@@ -16,7 +16,7 @@ export const Login = () => {
       await login(email, password);
       nav("/home");
     } catch (error) {
-      alert("error");
+      alert("로그인 실패 : " + error.response.data.message);
     }
   };
   return (

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { signup } from "../util/api";
 
 export const Signup = () => {
   const {
@@ -8,10 +9,30 @@ export const Signup = () => {
     watch,
     formState: { errors },
   } = useForm();
-  // eslint-disable-next-line no-unused-vars
   const nav = useNavigate();
 
-  const handleSignup = () => {};
+  const handleSignup = async (data) => {
+    try {
+      // const submitBirth = new Date(data.birth).getTime();
+
+      const res = await signup(
+        data.name,
+        data.email,
+        data.password,
+        data.birth
+      );
+      if (res.status === 201) {
+        alert("회원가입 성공!");
+        nav("/");
+      }
+    } catch (error) {
+      if (error.response?.status === 400) {
+        alert("이미 존재하는 사용자입니다.");
+      } else {
+        alert("회원가입 실패!");
+      }
+    }
+  };
   return (
     <div>
       <h2>회원가입</h2>
@@ -87,8 +108,15 @@ export const Signup = () => {
         />
         {errors.birth && <p>{errors.birth.message}</p>}
         <br />
-        <button>회원가입</button>
+        <button type="submit">회원가입</button>
       </form>
+      <button
+        onClick={() => {
+          nav("/");
+        }}
+      >
+        로그인
+      </button>
     </div>
   );
 };

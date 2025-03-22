@@ -1,11 +1,14 @@
 import axios from "axios";
 
-const API_URL = "";
+const API_URL = "http://13.124.205.29:8080";
 
-// const api = axios.create({
-//   baseURL: API_URL,
-//   withCredentials: true,
-// });
+const api = axios.create({
+  baseURL: API_URL,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 //로그인 요청, 토큰 발급 후 로컬 저장소에 저장
 export const login = async (email, password) => {
@@ -15,8 +18,14 @@ export const login = async (email, password) => {
 };
 
 //회원가입 요청
-export const signup = async (email, password) => {
-  return axios.post(`${API_URL}/`, { email, password });
+export const signup = async (name, email, password, birthdate) => {
+  const response = await api.post(`/signup`, {
+    name,
+    email,
+    password,
+    birthdate,
+  });
+  return response;
 };
 
 //로그아웃 요청
