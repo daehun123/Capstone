@@ -12,9 +12,10 @@ const api = axios.create({
 
 //로그인 요청, 토큰 발급 후 로컬 저장소에 저장
 export const login = async (email, password) => {
-  const response = await axios.post(`${API_URL}/`, { email, password });
-  localStorage.setItem("token", response.data.token);
-  return response.data;
+  const response = await api.post(`/login`, { email, password });
+  localStorage.setItem("accessToken", response.data.accessToken);
+  localStorage.setItem("refreshToken", response.data.refreshToken);
+  return response;
 };
 
 //회원가입 요청
@@ -30,32 +31,34 @@ export const signup = async (name, email, password, birthdate) => {
 
 //로그아웃 요청
 export const logout = async () => {
-  localStorage.removeItem("token");
-  return axios.post(`${API_URL}/`);
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  return api.post(`/`);
 };
 
 //데이터 요청
 export const getData = async () => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("accessToken");
 
   try {
-    return axios.get(`${API_URL}/`, {
+    return api.get(`/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
-    if (error.response && error.response.status === 403) {
+    if (error.response && error.response.status === 401) {
       const re_token = await refreshToken();
-      return await axios.post(`${API_URL}/`, {
+      return await axios.get(`/`, {
         headers: { Authorization: `Bearer ${re_token}` },
       });
-    } else {
+    } else if (error.response && error.response.status === 403) {
       throw error;
     }
   }
 };
 
 export const refreshToken = async () => {
-  const response = await axios.post(`${API_URL}/`);
-  localStorage.setItem("token", response.data.accessToken);
+  const response = await api.get(`/refresh-token`);
+  localStorage.setItem("accessToken", response.data.accessToken);
+  localStorage.setItem("refreshToken", response.data.refreshToken);
   return response.data.accessToken;
 };

@@ -13,10 +13,16 @@ export const Login = () => {
 
   const handleLogin = async () => {
     try {
-      await login(email, password);
-      nav("/home");
+      const res = await login(email, password);
+      if (res.status === 200) {
+        nav("/home");
+      }
     } catch (error) {
-      alert("로그인 실패 : " + error.response.data.message);
+      if (error.response?.status === 400) {
+        alert("이메일, 비밀번호가 틀렸습니다.");
+      } else {
+        alert("존재하지 않는 회원입니다.");
+      }
     }
   };
   return (
