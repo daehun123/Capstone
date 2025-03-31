@@ -37,7 +37,7 @@ const SignupForm = () => {
   return (
     <form onSubmit={handleSubmit(handleSignup)}>
       {/*이메일 입력*/}
-      <div>
+      <div className="border-b-2 space-x-2 leading-10">
         <label>이메일</label>
         <input
           type="email"
@@ -50,10 +50,12 @@ const SignupForm = () => {
           })}
           placeholder="example@email.com"
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && (
+          <p className="text-red-500 text-sm">{errors.email.message}</p>
+        )}
       </div>
       {/*비밀번호 입력 */}
-      <div>
+      <div className="border-b-2 space-x-2 leading-10">
         <label>비밀번호</label>
         <input
           type="password"
@@ -66,10 +68,12 @@ const SignupForm = () => {
           })}
           placeholder="비밀번호 8자 이상"
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="text-red-500 text-sm">{errors.password.message}</p>
+        )}
       </div>
       {/*비밀번호 확인 입력*/}
-      <div>
+      <div className="border-b-2 space-x-2 leading-10">
         <label>비밀번호 확인</label>
         <input
           type="password"
@@ -80,10 +84,14 @@ const SignupForm = () => {
           })}
           placeholder="비밀번호 확인"
         />
-        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+        {errors.confirmPassword && (
+          <p className="text-red-500 text-sm">
+            {errors.confirmPassword.message}
+          </p>
+        )}
       </div>
       {/*이름 입력 */}
-      <div>
+      <div className="border-b-2 space-x-2 leading-10">
         <label>이름</label>
         <input
           {...register("name", {
@@ -95,19 +103,36 @@ const SignupForm = () => {
           })}
           placeholder="ex)홍길동"
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && (
+          <p className="text-red-500 text-sm">{errors.name.message}</p>
+        )}
       </div>
       {/*생년월일 입력 */}
-      <label>생년월일</label>
+      <label className=" leading-10">생년월일</label>
       <input
         type="date"
         {...register("birth", {
           required: "생년월일 입력은 필수입니다.",
         })}
       />
-      {errors.birth && <p>{errors.birth.message}</p>}
+      {errors.birth && (
+        <p className="text-red-500 text-sm ml-2">{errors.birth.message}</p>
+      )}
       <br />
-      <button type="submit">회원가입</button>
+      <button
+        type="submit"
+        className="border rounded-md  min-w-full min-h-12 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold mt-10 mb-4"
+      >
+        회원가입
+      </button>
+      <button
+        onClick={() => {
+          nav("/login");
+        }}
+        className="border rounded-md min-w-full min-h-12 text-[#034AA6] border-[#034AA6] font-bold"
+      >
+        로그인
+      </button>
     </form>
   );
 };

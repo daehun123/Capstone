@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../util/api";
+import Layout from "../components/Layout";
+import { ArrowLeft } from "lucide-react";
+import Header from "../components/Header";
 
 export const Login = () => {
   const nav = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const onClickSignup = () => {
-    nav("/signup");
-  };
 
   const handleLogin = async () => {
     try {
@@ -26,28 +25,33 @@ export const Login = () => {
     }
   };
   return (
-    <div>
-      <h2>로그인</h2>
-      <div>
+    <Layout>
+      <Header title={"로그인"} />
+
+      <div className="p-4 flex flex-col space-y-6 mt-28 mx-6">
+        <h1 className="font-extrabold text-4xl">로그인</h1>
         <input
           type="email"
           placeholder="이메일"
           onChange={(e) => setEmail(e.target.value)}
+          className="border-b-2 leading-9"
         />
         <input
           type="password"
           placeholder="비밀번호"
           onChange={(e) => setPassword(e.target.value)}
+          className="border-b-2 leading-9"
         />
+
+        <div>
+          <button
+            onClick={handleLogin}
+            className="border rounded-lg  min-w-full min-h-16 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold mt-10"
+          >
+            로그인
+          </button>
+        </div>
       </div>
-      <div>
-        <button>네이버</button>
-        <button>카카오톡</button>
-      </div>
-      <div>
-        <button onClick={handleLogin}>로그인</button>
-        <button onClick={onClickSignup}>회원가입</button>
-      </div>
-    </div>
+    </Layout>
   );
 };

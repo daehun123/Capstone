@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getData } from "../util/api";
 import { useNavigate } from "react-router-dom";
-
+import Layout from "../components/Layout";
 export const Home = () => {
   const nav = useNavigate();
 
@@ -22,7 +22,7 @@ export const Home = () => {
     };
     fetchData();
   }, [nav]);
-  return <div>Home</div>;
+  return <Layout>Home</Layout>;
 };
 
 export default Home;
