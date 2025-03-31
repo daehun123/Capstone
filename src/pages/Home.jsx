@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getData } from "../util/api";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
+import MainHeader from "../components/MainHeader";
 export const Home = () => {
   const nav = useNavigate();
 
@@ -22,7 +23,30 @@ export const Home = () => {
     };
     fetchData();
   }, [nav]);
-  return <Layout>Home</Layout>;
+  return (
+    <Layout>
+      <MainHeader />
+      <div className="bg-[#034AA6] min-h-screen ">
+        <div className="bg-white rounded-t-3xl mt-20 p-4 min-h-[calc(100vh-5rem)] flex flex-col space-y-3">
+          <div className="border rounded-lg border-slate-700 min-h-48">
+            container
+          </div>
+          <div className="border rounded-lg border-slate-700 min-h-48">
+            container
+          </div>
+          <div className="border rounded-lg border-slate-700 min-h-48">
+            container
+          </div>
+          <div className="border rounded-lg border-slate-700 min-h-48">
+            container
+          </div>
+          <div className="border rounded-lg border-slate-700 min-h-48">
+            container
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
 };
 
 export default Home;
