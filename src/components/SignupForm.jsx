@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import { signup } from "../util/api";
+import { getCode, signup } from "../util/api";
+import { useEffect, useState } from "react";
 const SignupForm = () => {
   const {
     register,
@@ -10,6 +11,10 @@ const SignupForm = () => {
     formState: { errors },
   } = useForm();
   const nav = useNavigate();
+  const { isVerified, setIsVerified } = useState(false);
+  const { code, setCode } = useState();
+  const { count, setCount } = useState(180);
+  const { timer, setTimer } = useState();
 
   const handleSignup = async (data) => {
     try {
@@ -32,6 +37,30 @@ const SignupForm = () => {
       } else {
         alert("회원가입 실패!");
       }
+    }
+  };
+  const startTimer = () => {
+    const id = setInterval(() => {
+      setCount((c) => c - 1);
+    }, 1000);
+    setTimer(id);
+  };
+
+  useEffect(() => {
+    if (count <= 0 && timer) {
+      clearInterval(timer);
+    }
+  }, [count, timer]);
+
+  const checkEmail = async (email) => {
+    try {
+      const res = await getCode(email);
+      if (res.status === 200) {
+        alert("인증 코드가 이메일로 전송되었습니다.");
+        setCode(res.data.code);
+      }
+    } catch (error) {
+      alert("인증중 오류가 발생했습니다.");
     }
   };
   return (
