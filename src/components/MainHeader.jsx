@@ -3,7 +3,7 @@ import { House } from "lucide-react";
 
 const MainHeader = () => {
   return (
-    <header className="bg-[#034AA6] h-20 w-full max-w-lg flex justify-center items-center px-4 pt-2 fixed z-50">
+    <header className="bg-[#034AA6] h-20 w-full max-w-md flex justify-center items-center px-4 pt-2 fixed z-50">
       <div className="h-14 w-40 overflow-hidden ">
         <img src={logo} alt="logo" className="h-full w-full object-cover" />
       </div>

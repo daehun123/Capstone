@@ -5,7 +5,7 @@ const Header = ({ title }) => {
   const nav = useNavigate();
 
   return (
-    <header className="relative h-20 border-b-2 border-[#034AA6] flex items-center px-4">
+    <header className="fixed w-full max-w-md h-20 border-b-2 border-[#034AA6] flex items-center px-4">
       <button onClick={() => nav(-1)} className="z-10">
         <ArrowLeft size={28} />
       </button>

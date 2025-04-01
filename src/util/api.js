@@ -32,7 +32,7 @@ export const signup = async (name, email, password, birthdate) => {
 //이메일 인증 코드 받아오기
 export const getCode = async (email) => {
   const response = await api.post("/email/verify", { email });
-  return response
+  return response;
 };
 //로그아웃 요청
 export const logout = async () => {

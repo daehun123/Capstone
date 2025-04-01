@@ -1,16 +1,16 @@
 import Layout from "../components/Layout";
-import main_logo from "../assets/main_logo.png";
 import { useNavigate } from "react-router-dom";
 import nlogin_btn from "../assets/btnG_축약형.png";
 import klogin_btn from "../assets/kakao_login_large.png";
+import AnimationLogo from "../components/AnimationLogo";
 
 const FirstPage = () => {
   const nav = useNavigate();
   return (
     <Layout>
       <div>
-        <img src={main_logo} className="mt-10" />
-        <div className="flex flex-col space-y-3 mt-40 mx-5 pt-10">
+        <AnimationLogo />
+        <div className="flex flex-col space-y-3  mx-5 pt-10">
           <button
             onClick={() => nav("/login")}
             className="border rounded-xl  min-w-full min-h-12 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold"
