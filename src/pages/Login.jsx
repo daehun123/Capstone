@@ -46,7 +46,7 @@ export const Login = () => {
         <div>
           <button
             onClick={handleLogin}
-            className="border rounded-lg  min-w-full min-h-16 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold mt-10"
+            className="border rounded-xl  min-w-full min-h-16 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold mt-10"
           >
             로그인
           </button>

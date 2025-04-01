@@ -100,7 +100,7 @@ const SignupForm = () => {
         <button
           type="button"
           onClick={handleSendCode}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded-xl"
         >
           인증 코드 전송
         </button>
@@ -131,7 +131,7 @@ const SignupForm = () => {
               <button
                 type="button"
                 onClick={handleVerifyCode}
-                className="bg-green-600 text-white px-4 py-2 rounded"
+                className="bg-green-600 text-white px-4 py-2 rounded-xl"
               >
                 인증 확인
               </button>
@@ -208,7 +208,7 @@ const SignupForm = () => {
 
           <button
             type="submit"
-            className="w-full bg-[#034AA6] hover:bg-[#2A5CBF] text-white font-bold py-2 rounded"
+            className="w-full bg-[#034AA6] hover:bg-[#2A5CBF] text-white font-bold py-2 rounded-xl"
           >
             회원가입
           </button>

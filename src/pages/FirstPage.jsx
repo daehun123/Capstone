@@ -13,19 +13,25 @@ const FirstPage = () => {
         <div className="flex flex-col space-y-3 mt-40 mx-5 pt-10">
           <button
             onClick={() => nav("/login")}
-            className="border rounded-md  min-w-full min-h-12 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold"
+            className="border rounded-xl  min-w-full min-h-12 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold"
           >
             로그인
           </button>
           <button
             onClick={() => nav("signup")}
-            className="border rounded-md min-w-full min-h-12 text-[#034AA6] border-[#034AA6] font-bold"
+            className="border rounded-xl min-w-full min-h-12 text-[#034AA6] border-[#034AA6] font-bold"
           >
             가입하기
           </button>
           <div className="flex justify-center space-x-3">
-            <img src={nlogin_btn} className="cursor-pointer max-h-12" />
-            <img src={klogin_btn} className="cursor-pointer max-h-12" />
+            <img
+              src={nlogin_btn}
+              className="cursor-pointer max-h-12 rounded-lg"
+            />
+            <img
+              src={klogin_btn}
+              className="cursor-pointer max-h-12 rounded-lg"
+            />
           </div>
         </div>
       </div>

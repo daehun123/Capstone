@@ -26,22 +26,27 @@ export const Home = () => {
   return (
     <Layout>
       <MainHeader />
-      <div className="bg-[#034AA6] min-h-screen ">
-        <div className="bg-white rounded-t-3xl mt-20 p-4 min-h-[calc(100vh-5rem)] flex flex-col space-y-3">
-          <div className="border rounded-lg border-slate-700 min-h-48">
+      <div className="bg-[#034AA6] min-h-screen text-center pt-20">
+        <a className="relative top-16 text-white font-semibold text-lg">
+          안녕하세요 강대훈님 오늘의 추천입니다!
+        </a>
+        <div className="bg-white rounded-t-3xl mt-32 p-4 min-h-[calc(100vh-5rem)] flex flex-col space-y-3">
+          <div className="border rounded-lg border-slate-700 min-h-80">
             container
           </div>
-          <div className="border rounded-lg border-slate-700 min-h-48">
-            container
-          </div>
-          <div className="border rounded-lg border-slate-700 min-h-48">
-            container
-          </div>
-          <div className="border rounded-lg border-slate-700 min-h-48">
-            container
-          </div>
-          <div className="border rounded-lg border-slate-700 min-h-48">
-            container
+          <div className="grid grid-cols-2 gap-2">
+            <div className="border rounded-lg border-slate-700 min-h-40">
+              container
+            </div>
+            <div className="border rounded-lg border-slate-700 min-h-40">
+              container
+            </div>
+            <div className="border rounded-lg border-slate-700 min-h-40">
+              container
+            </div>
+            <div className="border rounded-lg border-slate-700 min-h-40">
+              container
+            </div>
           </div>
         </div>
       </div>
