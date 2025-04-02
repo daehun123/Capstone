@@ -30,7 +30,7 @@ export const Home = () => {
         <a className="relative top-16 text-white font-semibold text-lg">
           안녕하세요 강대훈님 오늘의 추천입니다!
         </a>
-        <div className="bg-white rounded-t-3xl mt-32 p-4 min-h-[calc(100vh-5rem)] flex flex-col space-y-3">
+        <div className="bg-white rounded-t-3xl mt-32 p-4 min-h-[calc(100vh-5rem)] flex flex-col space-y-3 border border-gray-200">
           <div className="border rounded-lg border-slate-700 min-h-80">
             container
           </div>

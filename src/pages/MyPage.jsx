@@ -19,7 +19,7 @@ const MyPage = () => {
             관심사 그래프입니다!
           </div>
         </div>
-        <div className="flex justify-center">
+        <div className="mx-4 my-6 p-4 bg-white rounded-2xl shadow-2xl border border-gray-200">
           <DonutChart />
         </div>
       </div>

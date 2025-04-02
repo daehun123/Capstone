@@ -8,9 +8,13 @@ const DonutChart = () => {
     { name: "조거", value: 120, fill: "#B5A8D5" },
   ];
   return (
-    <div className="flex justify-center">
+    <div className="flex flex-col">
+      <div className="text-sm text-gray-600 text-center mt-2">
+        가장 관심 있는 항목은{" "}
+        <span className="font-semibold text-[#211C84]">가죽</span>입니다.
+      </div>
       <RadialBarChart
-        width={500}
+        width={400}
         height={500}
         cx="50%"
         cy="40%"
@@ -19,6 +23,7 @@ const DonutChart = () => {
         startAngle={90}
         endAngle={-270}
         data={data}
+        className="pr-4"
       >
         <PolarAngleAxis
           type="number"
@@ -31,7 +36,7 @@ const DonutChart = () => {
           iconSize={20}
           layout="horizontal"
           verticalAlign="bottom"
-          align="center"
+          align="left"
         />
       </RadialBarChart>
     </div>

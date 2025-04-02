@@ -8,9 +8,9 @@ const FirstPage = () => {
   const nav = useNavigate();
   return (
     <Layout>
-      <div>
+      <div className="relative h-screen">
         <AnimationLogo />
-        <div className="flex flex-col space-y-3  mx-5 pt-10">
+        <div className="flex flex-col space-y-3 px-3 absolute bottom-1 w-full">
           <button
             onClick={() => nav("/login")}
             className="border rounded-xl  min-w-full min-h-12 text-white bg-[#034AA6] hover:bg-[#2A5CBF] font-bold"
