@@ -1,18 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Settings } from "lucide-react";
 
-const Header = ({ title }) => {
+const Header = ({ title, system }) => {
   const nav = useNavigate();
 
   return (
-    <header className="w-full max-w-md h-20 border-b border-blue-300/50 shadow-sm backdrop-blur-md flex items-center px-4 bg-white/70">
+    <header className="fixed z-50 w-full gap-3 max-w-md h-20 border-b border-blue-300/50 shadow-sm backdrop-blur-md flex items-center px-4 bg-white">
       <button onClick={() => nav(-1)} className="z-10">
         <ArrowLeft size={28} />
       </button>
 
-      <h1 className="absolute left-1/4 -translate-x-1/2 text-xl font-bold">
-        {title}
-      </h1>
+      <h1 className="font-bold text-lg">{title}</h1>
+      {system === true ? (
+        <button className="absolute right-4" onClick={() => nav("/setting")}>
+          <Settings size={24} />
+        </button>
+      ) : null}
     </header>
   );
 };
