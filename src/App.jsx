@@ -5,6 +5,7 @@ import { Notfound } from "./pages/Notfound";
 import { Home } from "./pages/home";
 import FirstPage from "./pages/FirstPage";
 import MyPage from "./pages/Mypage";
+import Setting from "./pages/Setting";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/home" element={<Home />} />
       <Route path="/mypage" element={<MyPage />} />
+      <Route path="/setting" element={<Setting />} />
       <Route path="*" element={<Notfound />} />
     </Routes>
   );
