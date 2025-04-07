@@ -11,7 +11,8 @@ const DonutChart = () => {
     <div className="flex flex-col">
       <div className="text-sm text-gray-600 text-center mt-2">
         가장 관심 있는 항목은{" "}
-        <span className="font-semibold text-[#211C84]">가죽</span>입니다.
+        <span className="font-semibold text-[#211C84]">{data[0].name}</span>
+        입니다.
       </div>
       <RadialBarChart
         width={400}

@@ -13,9 +13,9 @@ const api = axios.create({
 //로그인 요청, 토큰 발급 후 로컬 저장소에 저장
 export const login = async (email, password) => {
   const response = await api.post(`/login`, { email, password });
-  const { accessToken, refreshToken } = response.data.data;
-  localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("refreshToken", refreshToken);
+  // const { accessToken, refreshToken } = response.data.data;
+  // localStorage.setItem("accessToken", accessToken);
+  // localStorage.setItem("refreshToken", refreshToken);
   return response;
 };
 
@@ -45,15 +45,18 @@ export const logout = async () => {
 export const getData = async () => {
   const token = localStorage.getItem("accessToken");
   try {
-    return api.get(`/hello`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    // return api.get(`/hello`, {
+    //   headers: { Authorization: `Bearer ${token}` },
+    // });
+    return api.get(`/hello`);
   } catch (error) {
     if (error.response && error.response.status === 401) {
-      const re_token = await refreshToken();
-      return await axios.get(`/hello`, {
-        headers: { Authorization: `Bearer ${re_token}` },
-      });
+      // const re_token = await refreshToken();
+      // return await axios.get(`/hello`, {
+      //   headers: { Authorization: `Bearer ${re_token}` },
+      // });
+      await api.get(`/refresh-token`);
+      return api.get(`/hello`);
     } else if (error.response && error.response.status === 403) {
       throw error;
     }
