@@ -2,22 +2,25 @@ import { Route, Routes } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { Notfound } from "./pages/Notfound";
-import { Home } from "./pages/home";
+import { Home } from "./pages/Home";
 import FirstPage from "./pages/FirstPage";
 import MyPage from "./pages/Mypage";
 import Setting from "./pages/Setting";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<FirstPage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/mypage" element={<MyPage />} />
-      <Route path="/setting" element={<Setting />} />
-      <Route path="*" element={<Notfound />} />
-    </Routes>
+    <AnimatePresence>
+      <Routes>
+        <Route path="/" element={<FirstPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/setting" element={<Setting />} />
+        <Route path="*" element={<Notfound />} />
+      </Routes>
+    </AnimatePresence>
   );
 }
 

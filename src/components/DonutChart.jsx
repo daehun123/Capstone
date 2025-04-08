@@ -6,6 +6,7 @@ const DonutChart = () => {
     { name: "A-2", value: 280, fill: "#4D55CC" },
     { name: "쿄듀로이", value: 200, fill: "#7A73D1" },
     { name: "조거", value: 120, fill: "#B5A8D5" },
+    { name: "청바지", value: 70, fill: "#BEBACF" },
   ];
   return (
     <div className="flex flex-col">

@@ -3,53 +3,79 @@ import { getData } from "../util/api";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import MainHeader from "../components/MainHeader";
+import ContentSlider from "../components/ContentSlider";
+import ContentList from "../components/ContentList";
 export const Home = () => {
   const nav = useNavigate();
+  const [isOpen, setIsOpen] = useState;
+  const modalOpen = () => {
+    setIsOpen(true);
+  };
+  const modalClose = () => {
+    setIsOpen(false);
+  };
 
-  const [data, setData] = useState();
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await getData();
+  const [data, setData] = useState([
+    {
+      id: 1,
+      name: "가죽",
+      thumbnail:
+        "https://gdimg.gmarket.co.kr/2650436896/still/400?ver=1735208261",
+    },
+    {
+      id: 2,
+      name: "A-2",
+      thumbnail:
+        "https://coor.kr/web/product/extra/big/202502/2c94e3f34f4e503db3759d3a316c74d1.jpeg",
+    },
+    {
+      id: 3,
+      name: "쿄듀로이",
+      thumbnail:
+        "https://img.29cm.co.kr/next-product/2022/09/16/22c0389d41d04219a9b4f570509f489e_20220916151534.jpg?width=700&format=webp",
+    },
+    {
+      id: 4,
+      name: "조거",
+      thumbnail:
+        "https://item.elandrs.com/r/image/item/2023-11-08/5f90e774-eecb-4890-8869-f00b9250e54a.jpg?w=750&h=&q=100",
+    },
+    {
+      id: 5,
+      name: "청바지",
+      thumbnail:
+        "https://ozkizonline.cafe24.com/ozkiz/wear/p273_wow_point_05.jpg",
+    },
+  ]);
 
-  //       if (res.status === 200) {
-  //         setData(res.data);
-  //         console.log(res.data.massage);
-  //       }
-  //     } catch (error) {
-  //       alert("접근 불가! 로그인하세요");
-  //       nav("/", { replace: true });
-  //     }
-  //   };
-  //   fetchData();
-  // }, [nav]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await getData();
+
+        if (res.status === 200) {
+          //setData(res.data);
+        }
+      } catch (error) {
+        alert("접근 불가! 로그인하세요");
+        nav("/", { replace: true });
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Layout>
       <MainHeader />
-      <div className="bg-[#034AA6] min-h-screen text-center pt-20">
-        <a className="relative top-16 text-white font-semibold text-lg">
-          안녕하세요 강대훈님 오늘의 추천입니다!
-        </a>
-        <div className="bg-white rounded-t-3xl mt-32 p-4 min-h-[calc(100vh-5rem)] flex flex-col space-y-3 border border-gray-200">
-          <div className="border rounded-lg border-slate-700 min-h-80">
-            container
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="border rounded-lg border-slate-700 min-h-40">
-              container
-            </div>
-            <div className="border rounded-lg border-slate-700 min-h-40">
-              container
-            </div>
-            <div className="border rounded-lg border-slate-700 min-h-40">
-              container
-            </div>
-            <div className="border rounded-lg border-slate-700 min-h-40">
-              container
-            </div>
-          </div>
-        </div>
-      </div>
+      <main className="bg-[#034AA6] min-h-screen text-center pt-20 flex flex-col">
+        <p className="relative top-16 text-white font-semibold text-lg">
+          안녕하세요 <span className="text-[#FFD700]">강대훈</span>님 오늘의
+          추천이에요!
+        </p>
+        <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
+          <ContentSlider data={data} />
+          <ContentList data={data} />
+        </article>
+      </main>
     </Layout>
   );
 };
