@@ -3,8 +3,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { useState } from "react";
 
-const ContentSlider = ({ data }) => {
- 
+const ContentSlider = ({ data, onItemClick }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -24,6 +23,7 @@ const ContentSlider = ({ data }) => {
           <div
             key={item.id}
             tabIndex={-1}
+            onClick={() => onItemClick(item)}
             className="w-full min-h-64 cursor-pointer transition duration-200 hover:bg-gray-50"
           >
             <figure
@@ -34,9 +34,9 @@ const ContentSlider = ({ data }) => {
                 src={item.thumbnail}
                 alt={item.name}
                 tabIndex={-1}
-                className=" min-h-52 max-h-52 object-cover rounded-lg"
+                className=" h-52 object-cover rounded-lg"
               />
-              <figcaption className="text-center font-bold text-[#034AA6] text-lg">
+              <figcaption className="text-center font-bold text-lg">
                 {item.name}
               </figcaption>
             </figure>

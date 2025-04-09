@@ -1,4 +1,4 @@
-const ContentList = ({ data }) => {
+const ContentList = ({ data, onItemClick }) => {
   return (
     <section className=" border-t-2 border-gray-200">
       <div className="flex flex-col items-start pl-4 pt-4">
@@ -11,6 +11,7 @@ const ContentList = ({ data }) => {
         {data.map((item) => (
           <figure
             key={item.id}
+            onClick={() => onItemClick(item)}
             className="flex flex-col items-center justify-center p-4 space-y-2 bg-white rounded-lg hover:shadow-md hover:scale-[1.02] transition-transform duration-200 cursor-pointer"
           >
             <img
@@ -18,7 +19,7 @@ const ContentList = ({ data }) => {
               alt={item.name}
               className="w-full aspect-square object-cover rounded-lg"
             />
-            <figcaption className="text-center font-bold text-[#034AA6]">
+            <figcaption className="text-center font-bold">
               {item.name}
             </figcaption>
           </figure>

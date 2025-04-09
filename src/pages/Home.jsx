@@ -5,15 +5,12 @@ import Layout from "../components/Layout";
 import MainHeader from "../components/MainHeader";
 import ContentSlider from "../components/ContentSlider";
 import ContentList from "../components/ContentList";
+import ContentModal from "../components/ContentModal";
 export const Home = () => {
   const nav = useNavigate();
-  const [isOpen, setIsOpen] = useState;
-  const modalOpen = () => {
-    setIsOpen(true);
-  };
-  const modalClose = () => {
-    setIsOpen(false);
-  };
+  const [selectedItem, setSelectedItem] = useState(null);
+  const openModal = (item) => setSelectedItem(item);
+  const closeModal = () => setSelectedItem(null);
 
   const [data, setData] = useState([
     {
@@ -21,6 +18,20 @@ export const Home = () => {
       name: "가죽",
       thumbnail:
         "https://gdimg.gmarket.co.kr/2650436896/still/400?ver=1735208261",
+      detail: [
+        {
+          title: "상품 1",
+          thumbnail: "",
+        },
+        {
+          title: "상품2",
+          thumbnail: "",
+        },
+        {
+          title: "상품3",
+          thumbnail: "",
+        },
+      ],
     },
     {
       id: 2,
@@ -72,9 +83,12 @@ export const Home = () => {
           추천이에요!
         </p>
         <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
-          <ContentSlider data={data} />
-          <ContentList data={data} />
+          <ContentSlider data={data} onItemClick={openModal}/>
+          <ContentList data={data} onItemClick={openModal}/>
         </article>
+        {setSelectedItem && (
+          <ContentModal item={selectedItem} onClose={closeModal} />
+        )}
       </main>
     </Layout>
   );
