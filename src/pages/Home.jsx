@@ -6,6 +6,7 @@ import MainHeader from "../components/MainHeader";
 import ContentSlider from "../components/ContentSlider";
 import ContentList from "../components/ContentList";
 import ContentModal from "../components/ContentModal";
+import YoutubeSlider from "../components/YoutubeSlider";
 export const Home = () => {
   const nav = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
@@ -59,6 +60,39 @@ export const Home = () => {
     },
   ]);
 
+  const [youtubeData, setYoutubeData] = useState([
+    {
+      id: 1,
+      title: "🎁 가격대별 20대 남자 선물 추천 (주우재 추천 아이템도 있음)",
+      thumbnail:
+        "https://i.ytimg.com/vi/ixvdHY8zJ9Q/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDA5_tEfrH0rhZumh1piBJRgSGomw",
+      link: "",
+    },
+    {
+      id: 2,
+      title:
+        "🚨 무조건 이 영상 보고 일본가세요🚨 일본여행 필수템부터 / 모르면 돈날리는.. 여행 망치는 것들 / 쇼핑tip / 지역 추천까지‼️",
+      thumbnail:
+        "https://i.ytimg.com/vi/vi1FoHjIR3Y/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCfjhtS4IcG43OQKBBJCw-97fvYgg",
+      link: "",
+    },
+    {
+      id: 3,
+      title:
+        "🔥≪신병≫ 시즌3🔥드디어 떴다..! 중대로 복귀한 성윤모가 &quot;연예인 후임&quot;과 &quot;개폐급 후임&quot; 신병을  동시에 맞이하면 벌어지는 일 ㄷㄷ ≪신병 시즌3≫ 1-4화 게시자: 지무비 : G Movie 조회수 1,530,941회 5일 전 34분",
+      thumbnail:
+        "https://i.ytimg.com/vi/5NNfOHXy3yQ/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCeoBDSip4ehHMh9JTM1LWUF88Qww",
+      link: "",
+    },
+    {
+      id: 4,
+      title: "4년만에 게이밍 미니 PC 바꿨습니다! 컴퓨터는 작을 수록 예쁘다(?)",
+      thumbnail:
+        "https://i.ytimg.com/vi/iQVz7agtA7E/hq720.jpg?sqp=-oaymwEnCNAFEJQDSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAJoY8S7IHx2jZbyQFsqa6DOnP_kg",
+      link: "",
+    },
+  ]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -83,8 +117,9 @@ export const Home = () => {
           추천이에요!
         </p>
         <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
-          <ContentSlider data={data} onItemClick={openModal}/>
-          <ContentList data={data} onItemClick={openModal}/>
+          <ContentSlider data={data} onItemClick={openModal} />
+          <YoutubeSlider data={youtubeData} />
+          <ContentList data={data} onItemClick={openModal} />
         </article>
         {setSelectedItem && (
           <ContentModal item={selectedItem} onClose={closeModal} />
