@@ -7,30 +7,65 @@ import ContentSlider from "../components/ContentSlider";
 import ContentList from "../components/ContentList";
 import ContentModal from "../components/ContentModal";
 import YoutubeSlider from "../components/YoutubeSlider";
+import YoutubeModal from "../components/YoutubeModal";
 export const Home = () => {
   const nav = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
-  const openModal = (item) => setSelectedItem(item);
-  const closeModal = () => setSelectedItem(null);
+  const [selectType, setSelectType] = useState(null);
+  const openModal = (item) => {
+    setSelectedItem(item);
+    setSelectType("content");
+  };
+  const openYModal = (item) => {
+    setSelectedItem(item);
+    setSelectType("youtube");
+  };
+  const closeModal = () => {
+    setSelectedItem(null);
+    setSelectType(null);
+  };
 
   const [data, setData] = useState([
     {
       id: 1,
-      name: "가죽",
+      name: "가죽 자켓",
       thumbnail:
-        "https://gdimg.gmarket.co.kr/2650436896/still/400?ver=1735208261",
+        "https://intheraw.co.kr/web/product/tiny/202404/d0b31c6cbe58bfe32934d9e31f61d60f.jpg",
       detail: [
         {
-          title: "상품 1",
-          thumbnail: "",
+          id: 1,
+          title: "[변우석] 남자 에코 레더 자켓(가죽 자켓)",
+          thumbnail:
+            "https://m.giordano.co.kr/_data/attach/202501/24/3d994806f3ec6c470a29ffd739944f0e.jpg",
+          link: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.giordano.co.kr%2Fshop%2Fdetail.php%3Fpno%3DB0FACF2D75C12CBD77786A1F5588FD56%26cno1%3D2181&psig=AOvVaw3mjNcV2akHHDDiElwBunmF&ust=1744694062451000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLD6k4ri1owDFQAAAAAdAAAAABAE",
         },
         {
-          title: "상품2",
-          thumbnail: "",
+          id: 2,
+          title: "투웨이 베이직 카라 레더 자켓",
+          thumbnail:
+            "https://m.byslim.com/web/product/big/202402/8776e20a5f6257e83d6b26c333e5893e.jpg",
+          link: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.byslim.com%2Fproduct%2F%25ED%2588%25AC%25EC%259B%25A8%25EC%259D%25B4-%25EB%25B2%25A0%25EC%259D%25B4%25EC%25A7%2581-%25EC%25B9%25B4%25EB%259D%25BC-%25EB%25A0%2588%25EB%258D%2594-%25EC%259E%2590%25EC%25BC%2593%2F26538%2F&psig=AOvVaw3mjNcV2akHHDDiElwBunmF&ust=1744694062451000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLD6k4ri1owDFQAAAAAdAAAAABAd",
         },
         {
-          title: "상품3",
-          thumbnail: "",
+          id: 3,
+          title: "아더 크랙 스웨이드 레더자켓 (2color)",
+          thumbnail:
+            "https://g-room.kr/web/product/big/202310/54432cc7cc20b8afdbfd7b5f3733783f.jpg",
+          link: "https://g-room.kr/web/product/big/202310/54432cc7cc20b8afdbfd7b5f3733783f.jpg",
+        },
+        {
+          id: 4,
+          title: "보머 절개 워싱 레더 자켓",
+          thumbnail:
+            "https://haokan.co.kr/web/product/big/202404/34b7fdd266e7b4719be555a794375453.jpg",
+          link: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fhaokan.co.kr%2Fproduct%2F%25EB%25B3%25B4%25EB%25A8%25B8-%25EC%25A0%2588%25EA%25B0%259C-%25EC%259B%258C%25EC%258B%25B1-%25EB%25A0%2588%25EB%258D%2594-%25EC%259E%2590%25EC%25BC%2593%2F9427%2F&psig=AOvVaw2SQ6X9CMwVrztcWy_QFhDe&ust=1744697013407000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiouoDt1owDFQAAAAAdAAAAABAE",
+        },
+        {
+          id: 5,
+          title: "오버핏 투웨이 비건레더 자켓 MOOD INSIDE",
+          thumbnail:
+            "https://maninstore.co.kr/web/product/big/202501/139b4fa4df486d59dda19ac7f0e5de51.jpg",
+          link: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fmaninstore.co.kr%2Fproduct%2Fdetail.html%3Fproduct_no%3D6447&psig=AOvVaw2SQ6X9CMwVrztcWy_QFhDe&ust=1744697013407000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiouoDt1owDFQAAAAAdAAAAABAT",
         },
       ],
     },
@@ -118,11 +153,14 @@ export const Home = () => {
         </p>
         <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
           <ContentSlider data={data} onItemClick={openModal} />
-          <YoutubeSlider data={youtubeData} />
+          <YoutubeSlider data={youtubeData} onItemClick={openYModal} />
           <ContentList data={data} onItemClick={openModal} />
         </article>
-        {setSelectedItem && (
+        {setSelectedItem && selectType === "content" && (
           <ContentModal item={selectedItem} onClose={closeModal} />
+        )}
+        {setSelectedItem && selectType === "youtube" && (
+          <YoutubeModal item={selectedItem} onClose={closeModal} />
         )}
       </main>
     </Layout>

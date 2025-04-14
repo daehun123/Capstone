@@ -21,7 +21,6 @@ const ContentSlider = ({ data, onItemClick }) => {
         {data.map((item) => (
           <div
             key={item.id}
-            tabIndex={-1}
             onClick={() => onItemClick(item)}
             className="w-full min-h-64 cursor-pointer transition duration-200 hover:bg-gray-50"
           >

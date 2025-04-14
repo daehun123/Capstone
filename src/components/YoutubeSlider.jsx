@@ -8,7 +8,7 @@ const YoutubeSlider = ({ data, onItemClick }) => {
     infinity: true,
     speed: 500,
     slidesToShow: 2,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     arrows: false,
   };
   return (
@@ -23,11 +23,12 @@ const YoutubeSlider = ({ data, onItemClick }) => {
         <Slider {...settings}>
           {data.map((item) => (
             <div key={item.id} className="px-1">
-              <figure className="overflow-hidden rounded-lg shadow-sm">
+              <figure className="overflow-hidden rounded-lg shadow-sm cursor-pointer">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
                   className="w-full h-auto object-cover rounded-lg"
+                  onClick={() => onItemClick(item)}
                 />
               </figure>
             </div>

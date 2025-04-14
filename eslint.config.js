@@ -1,5 +1,5 @@
 import js from "@eslint/js";
-import globals from "globals";
+import globals, { browser } from "globals";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
@@ -36,6 +36,11 @@ export default [
       "no-unused-vars": "off",
       "react/prop-types": "off",
       "react-refresh/only-export-components ": "off",
+    },
+    env: {
+      browser: true,
+      node: true,
+      es6: true,
     },
   },
 ];
