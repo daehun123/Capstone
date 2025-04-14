@@ -1,6 +1,7 @@
 import { Star, X } from "lucide-react";
 import ContentGrid from "./ContentGrid";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const ContentModal = ({ item, onClose }) => {
   useEffect(() => {
@@ -9,6 +10,8 @@ const ContentModal = ({ item, onClose }) => {
       document.body.style.overflow = "auto";
     };
   }, []);
+
+  const [mark, setMark] = useState(null);
 
   if (!item) return null;
 

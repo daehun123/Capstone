@@ -17,22 +17,33 @@ const YoutubeModal = ({ item, onClose }) => {
     >
       <section
         onClick={(e) => e.stopPropagation()}
-        className="bg-white p-4 rounded-xl max-w-sm w-full h-2/3 shadow-lg relative"
+        className="bg-white p-5 rounded-2xl max-w-sm w-full h-2/3 shadow-xl relative flex flex-col justify-between"
       >
         <X
-          className="absolute right-2 top-2 cursor-pointer "
+          className="absolute right-3 top-3 cursor-pointer text-gray-500 hover:text-black"
           onClick={onClose}
         />
-        <div className="flex items-center border-b-2 pb-2">
+        <div className="flex flex-col items-center border-b pb-4 gap-3">
           <img
             src={item.thumbnail}
             alt={item.title}
-            className="rounded-lg h-24"
+            className="rounded-lg h-28 object-cover"
           />
-          <h2 className="text-lg font-extrabold h-full w-full ">
+          <h2 className="text-center text-xl font-bold text-gray-800 leading-tight">
             {item.title}
           </h2>
         </div>
+
+        <figcaption className="whitespace-pre-line text-sm mt-2 text-gray-700">
+          {item.description}
+        </figcaption>
+
+        <button
+          className="mt-6 bg-[#034AA6] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#022f6b] transition w-full"
+          onClick={() => window.open(item.link)}
+        >
+          🎥 영상 보러 가기
+        </button>
       </section>
     </div>
   );

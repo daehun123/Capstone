@@ -101,7 +101,9 @@ export const Home = () => {
       title: "🎁 가격대별 20대 남자 선물 추천 (주우재 추천 아이템도 있음)",
       thumbnail:
         "https://i.ytimg.com/vi/ixvdHY8zJ9Q/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDA5_tEfrH0rhZumh1piBJRgSGomw",
-      link: "",
+      link: "https://www.youtube.com/watch?v=ixvdHY8zJ9Q",
+      description:
+        "✅ 키링: 취향 저격 아이템\n✅ 포마드: 향기 좋고 세정 쉬움\n✅ 코도반 슈즈: 고급 가죽 + 편안함\n✅ 수건/속옷: 실용성 갑\n✅ 맥세이프 보조배터리: 디자인 + 기능\n✅ 지갑/액세서리: 브랜드 인지 + 자주 착용\n✅ 상품권: 실패 없는 안전한 선택",
     },
     {
       id: 2,
