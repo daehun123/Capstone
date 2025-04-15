@@ -29,7 +29,7 @@ const YoutubeModal = ({ item, onClose }) => {
             alt={item.title}
             className="rounded-lg h-28 object-cover"
           />
-          <h2 className="text-center text-xl font-bold text-gray-800 leading-tight">
+          <h2 className="text-center text-sm font-bold text-gray-800 leading-tight">
             {item.title}
           </h2>
         </div>
