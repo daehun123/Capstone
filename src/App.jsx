@@ -7,6 +7,7 @@ import FirstPage from "./pages/FirstPage";
 import MyPage from "./pages/Mypage";
 import Setting from "./pages/Setting";
 import { AnimatePresence } from "framer-motion";
+import BookMarkPage from "./pages/BookMarkPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/setting" element={<Setting />} />
+        <Route path="/bookmark" element={<BookMarkPage />} />
         <Route path="*" element={<Notfound />} />
       </Routes>
     </AnimatePresence>

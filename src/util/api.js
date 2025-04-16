@@ -72,3 +72,24 @@ const refreshToken = async () => {
   localStorage.setItem("refreshToken", refreshToken);
   return accessToken;
 };
+
+//북마크
+export const bookMark = async (id, mark) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    return api.get(`/`, {
+      headers: { Authorization: `Bearer ${token}` },
+      body: { id, mark },
+    });
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+      return await axios.get(`/`, {
+        headers: { Authorization: `Bearer ${re_token}` },
+        body: { id, mark },
+      });
+    } else if (error.response && error.response.status === 403) {
+      throw error;
+    }
+  }
+};

@@ -10,7 +10,12 @@ const MainHeader = () => {
         <img src={logo} alt="logo" className="h-full w-full object-cover" />
       </div>
       <figure className="absolute right-4 flex gap-2">
-        <Star className="text-white cursor-pointer" />
+        <Star
+          className="text-white cursor-pointer"
+          onClick={() => {
+            nav("/bookmark");
+          }}
+        />
         <House
           className="text-white  cursor-pointer"
           onClick={() => nav("/mypage")}

@@ -28,6 +28,7 @@ export const Home = () => {
   const [data, setData] = useState([
     {
       id: 1,
+      mark: true,
       name: "가죽 자켓",
       thumbnail:
         "https://intheraw.co.kr/web/product/tiny/202404/d0b31c6cbe58bfe32934d9e31f61d60f.jpg",
