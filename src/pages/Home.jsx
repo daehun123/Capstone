@@ -117,7 +117,7 @@ export const Home = () => {
     {
       id: 3,
       title:
-        "🔥≪신병≫ 시즌3🔥드디어 떴다..! 중대로 복귀한 성윤모가 &quot;연예인 후임&quot;과 &quot;개폐급 후임&quot; 신병을  동시에 맞이하면 벌어지는 일 ㄷㄷ ≪신병 시즌3≫ 1-4화 게시자: 지무비 : G Movie 조회수 1,530,941회 5일 전 34분",
+        "🔥≪신병≫ 시즌3🔥드디어 떴다..! 중대로 복귀한 성윤모가 연예인 후임과 개폐급 후임 신병을  동시에 맞이하면 벌어지는 일 ㄷㄷ ≪신병 시즌3≫ 1-4화",
       thumbnail:
         "https://i.ytimg.com/vi/5NNfOHXy3yQ/hqdefault.jpg?sqp=-oaymwEnCOADEI4CSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCeoBDSip4ehHMh9JTM1LWUF88Qww",
       link: "",
