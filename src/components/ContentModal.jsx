@@ -8,16 +8,15 @@ import { useNavigate } from "react-router-dom";
 const ContentModal = ({ item, onClose }) => {
   if (!item) return null;
   const [mark, setMark] = useState(item.mark);
-
+  const [changed, setChanged] = useState(false);
   const nav = useNavigate();
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "auto";
     };
   }, []);
-
-  const [changed, setChanged] = useState(false);
 
   const onBookMarking = () => {
     setMark((prev) => {
