@@ -157,17 +157,27 @@ export const Home = () => {
         <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
           <ContentSlider data={data} onItemClick={openModal} />
           <YoutubeSlider data={youtubeData} onItemClick={openYModal} />
-          <ContentList data={data} onItemClick={openModal} />
+
+          <section className=" border-t-2 border-gray-200">
+            <div className="flex flex-col items-start pl-4 pt-4">
+              <p className="font-extrabold text-xl text-[#034AA6]">
+                Something Else
+              </p>
+              <p className="text-gray-500 font-semibold text-sm">
+                이런 느낌은 어떨까요?
+              </p>
+            </div>
+            <ContentList data={data} onItemClick={openModal} />
+          </section>
         </article>
-        {setSelectedItem && selectType === "content" && (
+        {selectedItem && selectType === "content" && (
           <ContentModal item={selectedItem} onClose={closeModal} />
         )}
-        {setSelectedItem && selectType === "youtube" && (
+        {selectedItem && selectType === "youtube" && (
           <YoutubeModal item={selectedItem} onClose={closeModal} />
         )}
       </main>
     </Layout>
   );
 };
-
 export default Home;

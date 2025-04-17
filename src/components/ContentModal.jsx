@@ -6,6 +6,9 @@ import { bookMark } from "../util/api";
 import { useNavigate } from "react-router-dom";
 
 const ContentModal = ({ item, onClose }) => {
+  if (!item) return null;
+  const [mark, setMark] = useState(item.mark);
+
   const nav = useNavigate();
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -14,7 +17,6 @@ const ContentModal = ({ item, onClose }) => {
     };
   }, []);
 
-  const [mark, setMark] = useState(item.mark);
   const [changed, setChanged] = useState(false);
 
   const onBookMarking = () => {
@@ -38,8 +40,6 @@ const ContentModal = ({ item, onClose }) => {
     //   }
     // };
   }, [changed, mark]);
-
-  if (!item) return null;
 
   return (
     <div
