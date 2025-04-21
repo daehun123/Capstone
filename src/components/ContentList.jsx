@@ -1,7 +1,11 @@
-const ContentList = ({ data, onItemClick }) => {
+import useContentDataStore from "../store/useContentDataStore";
+
+const ContentList = ({ onItemClick }) => {
+  const { items } = useContentDataStore();
+  
   return (
     <div className="grid grid-cols-2 gap-6">
-      {data.map((item) => (
+      {items.map((item) => (
         <figure
           key={item.id}
           onClick={() => onItemClick(item)}

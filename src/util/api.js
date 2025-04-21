@@ -74,19 +74,19 @@ const refreshToken = async () => {
 };
 
 //북마크
-export const bookMark = async (id, mark) => {
+export const bookMark = async (data) => {
   const token = localStorage.getItem("accessToken");
   try {
     return api.get(`/`, {
       headers: { Authorization: `Bearer ${token}` },
-      body: { id, mark },
+      body: { data },
     });
   } catch (error) {
     if (error.response && error.response.status === 401) {
       const re_token = await refreshToken();
       return await axios.get(`/`, {
         headers: { Authorization: `Bearer ${re_token}` },
-        body: { id, mark },
+        body: { data },
       });
     } else if (error.response && error.response.status === 403) {
       throw error;
@@ -94,19 +94,18 @@ export const bookMark = async (id, mark) => {
   }
 };
 
-export const onDeleteAccount = async (id) => {
+//탈퇴하기
+export const onDeleteAccount = async () => {
   const token = localStorage.getItem("accessToken");
   try {
-    return api.get(`/`, {
+    return api.get(`/my-page/unsubscribe`, {
       headers: { Authorization: `Bearer ${token}` },
-      body: { id, mark },
     });
   } catch (error) {
     if (error.response && error.response.status === 401) {
       const re_token = await refreshToken();
-      return await axios.get(`/`, {
+      return await axios.get(`/my-page/unsubscribe`, {
         headers: { Authorization: `Bearer ${re_token}` },
-        body: { id, mark },
       });
     } else if (error.response && error.response.status === 403) {
       throw error;

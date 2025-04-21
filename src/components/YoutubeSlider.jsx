@@ -1,8 +1,10 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import useYoutubeDataStore from "../store/useYoutubeDataStore";
 
-const YoutubeSlider = ({ data, onItemClick }) => {
+const YoutubeSlider = ({ onItemClick }) => {
+  const { items } = useYoutubeDataStore();
   const settings = {
     dots: false,
     infinity: true,
@@ -21,7 +23,7 @@ const YoutubeSlider = ({ data, onItemClick }) => {
       </h2>
       <div className="w-full mt-2 ">
         <Slider {...settings}>
-          {data.map((item) => (
+          {items.map((item) => (
             <div key={item.id} className="px-1">
               <figure className="overflow-hidden rounded-lg shadow-sm cursor-pointer">
                 <img

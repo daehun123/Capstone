@@ -1,15 +1,9 @@
-import { Star, X } from "lucide-react";
+import { X } from "lucide-react";
 import ContentGrid from "./ContentGrid";
 import { useEffect } from "react";
-import { useState } from "react";
-import { bookMark } from "../util/api";
-import { useNavigate } from "react-router-dom";
 
 const ContentModal = ({ item, onClose }) => {
   if (!item) return null;
-  const [mark, setMark] = useState(item.mark);
-  const [changed, setChanged] = useState(false);
-  const nav = useNavigate();
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -17,28 +11,6 @@ const ContentModal = ({ item, onClose }) => {
       document.body.style.overflow = "auto";
     };
   }, []);
-
-  const onBookMarking = () => {
-    setMark((prev) => {
-      const updated = !prev;
-      setChanged(updated !== item.mark);
-      return updated;
-    });
-  };
-
-  useEffect(() => {
-    console.log(mark);
-    // return async () => {
-    //   if (changed) {
-    //     try {
-    //       res = await bookMark(item.id, mark);
-    //     } catch (error) {
-    //       alert("토큰만료 다시 로그인해주세요");
-    //       nav("/");
-    //     }
-    //   }
-    // };
-  }, [changed, mark]);
 
   return (
     <div
@@ -68,21 +40,9 @@ const ContentModal = ({ item, onClose }) => {
               </p>
             </div>
           </div>
-          {mark ? (
-            <Star
-              className="text-yellow-400 absolute top-14 right-4 cursor-pointer"
-              fill="yellow"
-              onClick={onBookMarking}
-            />
-          ) : (
-            <Star
-              className="text-yellow-400 absolute top-14 right-4 cursor-pointer"
-              onClick={onBookMarking}
-            />
-          )}
         </div>
 
-        <ContentGrid item={item.detail} />
+        <ContentGrid itemId={item.id} />
       </section>
     </div>
   );

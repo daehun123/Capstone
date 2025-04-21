@@ -1,8 +1,10 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import useContentDataStore from "../store/useContentDataStore";
 
-const ContentSlider = ({ data, onItemClick }) => {
+const ContentSlider = ({ onItemClick }) => {
+  const { items } = useContentDataStore();
   const settings = {
     dots: true,
     infinite: true,
@@ -18,7 +20,7 @@ const ContentSlider = ({ data, onItemClick }) => {
         Today&apos;s Show
       </h2>
       <Slider {...settings} className="w-full">
-        {data.map((item) => (
+        {items.map((item) => (
           <div
             key={item.id}
             onClick={() => onItemClick(item)}

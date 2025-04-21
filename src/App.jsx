@@ -8,6 +8,8 @@ import MyPage from "./pages/Mypage";
 import Setting from "./pages/Setting";
 import { AnimatePresence } from "framer-motion";
 import BookMarkPage from "./pages/BookMarkPage";
+import EmailSetPage from "./pages/EmailSetPage";
+import PassWordSet from "./pages/PassWordSet";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/bookmark" element={<BookMarkPage />} />
+        <Route path="/emailset" element={<EmailSetPage />} />
+        <Route path="/passwordset" element={<PassWordSet />} />
+
         <Route path="*" element={<Notfound />} />
       </Routes>
     </AnimatePresence>
