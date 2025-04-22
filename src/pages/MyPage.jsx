@@ -1,8 +1,8 @@
-import Layout from "../components/Layout";
-import Header from "../components/Header";
+import Layout from "../components/frame/Layout.jsx";
+import Header from "../components/frame/Header.jsx";
 import Lottie from "lottie-react";
 import animation from "../assets/Animation.json";
-import DonutChart from "../components/DonutChart";
+import DonutChart from "../components/mypage/DonutChart";
 import { useState } from "react";
 
 const MyPage = () => {

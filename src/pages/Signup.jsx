@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import SignupForm from "../components/SignupForm";
-import Layout from "../components/Layout";
-import Header from "../components/Header";
+import SignupForm from "../components/firstpage/SignupForm";
+import Layout from "../components/frame/Layout.jsx";
+import Header from "../components/frame/Header.jsx";
 export const Signup = () => {
   const nav = useNavigate();
   return (

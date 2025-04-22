@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Star } from "lucide-react";
-import useContentDataStore from "../store/useContentDataStore";
+import useContentDataStore from "../../store/useContentDataStore";
 
 const ContentGrid = ({ itemId }) => {
   const nav = useNavigate();

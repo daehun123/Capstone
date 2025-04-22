@@ -1,8 +1,8 @@
-import useContentDataStore from "../store/useContentDataStore";
+import useContentDataStore from "../../store/useContentDataStore";
 
 const ContentList = ({ onItemClick }) => {
   const { items } = useContentDataStore();
-  
+
   return (
     <div className="grid grid-cols-2 gap-6">
       {items.map((item) => (

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { bookMark } from "../util/api";
 
 const useContentDataStore = create((set, get) => ({
   items: [],
@@ -15,9 +16,19 @@ const useContentDataStore = create((set, get) => ({
     set({ items: updated });
   },
 
-  sendBookmark: async ()=>{
-    
-  }
+  sendBookmark: async () => {
+    const items = get().items;
+    const formatted = items.flatMap(
+      (group) =>
+        group.detail?.map((item) => ({
+          type: "places",
+          title: item.title,
+          link: item.link,
+          thumbnail: item.thumbnail,
+        })) ?? []
+    );
+    const res = await bookMark(formatted);
+  },
 }));
 
 export default useContentDataStore;

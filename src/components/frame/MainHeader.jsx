@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/main_logo_반전.png";
+import logo from "../../assets/main_logo_반전.png";
 import { House, Star } from "lucide-react";
 
 const MainHeader = () => {

@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import main_logo from "../assets/main_logo.png";
-import google_logo from "../assets/구글 로고.png";
-import naver_logo from "../assets/네이버 로고.png";
-import musinsa_logo from "../assets/무신사 로고.png";
-import cupang_logo from "../assets/쿠팡 로고.png";
+import main_logo from "../../assets/main_logo.png";
+import google_logo from "../../assets/구글 로고.png";
+import naver_logo from "../../assets/네이버 로고.png";
+import musinsa_logo from "../../assets/무신사 로고.png";
+import cupang_logo from "../../assets/쿠팡 로고.png";
 
 const AnimationLogo = () => {
   const logos = [google_logo, musinsa_logo, naver_logo, cupang_logo];

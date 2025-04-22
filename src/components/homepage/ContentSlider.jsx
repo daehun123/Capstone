@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import useContentDataStore from "../store/useContentDataStore";
+import useContentDataStore from "../../store/useContentDataStore";
 
 const ContentSlider = ({ onItemClick }) => {
   const { items } = useContentDataStore();

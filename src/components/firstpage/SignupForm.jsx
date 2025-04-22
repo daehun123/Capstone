@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { signup, getCode } from "../util/api";
+import { signup, getCode } from "../../util/api";
 import { Check } from "lucide-react";
 
 const SignupForm = () => {

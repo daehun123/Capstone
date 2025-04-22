@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Layout from "../components/Layout";
+import Header from "../components/frame/Header.jsx";
+import Layout from "../components/frame/Layout.jsx";
 
 const EmailSetPage = () => {
   return (

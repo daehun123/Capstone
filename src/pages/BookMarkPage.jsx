@@ -1,7 +1,6 @@
-import ContentList from "../components/ContentList";
-import ContentModal from "../components/ContentModal";
-import Header from "../components/Header";
-import Layout from "../components/Layout";
+import BookMarkPageGrid from "../components/bookmarkpage/bookmarkgrid";
+import Header from "../components/frame/Header";
+import Layout from "../components/frame/Layout";
 import { useState } from "react";
 
 const BookMarkPage = () => {
@@ -80,22 +79,11 @@ const BookMarkPage = () => {
     },
   ]); // 해당 부분은 api 변경
 
-  const [selectedItem, setSelectedItem] = useState(null);
-  const openModal = (item) => {
-    setSelectedItem(item);
-  };
-  const closeModal = () => {
-    setSelectedItem(null);
-  };
-
   return (
     <Layout>
       <Header title="북마크" />
       <main className="w-full min-h-screen p-4 mt-20">
-        <ContentList data={data} onItemClick={openModal}></ContentList>
-        {selectedItem && (
-          <ContentModal item={selectedItem} onClose={closeModal} />
-        )}
+        <BookMarkPageGrid/>
       </main>
     </Layout>
   );

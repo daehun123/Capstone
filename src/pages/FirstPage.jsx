@@ -1,8 +1,8 @@
-import Layout from "../components/Layout";
+import Layout from "../components/frame/Layout.jsx";
 import { useNavigate } from "react-router-dom";
 import nlogin_btn from "../assets/btnG_축약형.png";
 import klogin_btn from "../assets/kakao_login_large.png";
-import AnimationLogo from "../components/AnimationLogo";
+import AnimationLogo from "../components/firstpage/AnimationLogo";
 
 const FirstPage = () => {
   const nav = useNavigate();

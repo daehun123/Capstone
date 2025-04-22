@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { getData } from "../util/api";
 import { useNavigate } from "react-router-dom";
-import Layout from "../components/Layout";
-import MainHeader from "../components/MainHeader";
-import ContentSlider from "../components/ContentSlider";
-import ContentList from "../components/ContentList";
-import ContentModal from "../components/ContentModal";
-import YoutubeSlider from "../components/YoutubeSlider";
-import YoutubeModal from "../components/YoutubeModal";
+import Layout from "../components/frame/Layout.jsx";
+import MainHeader from "../components/frame/MainHeader";
+import ContentSlider from "../components/homepage/ContentSlider";
+import ContentList from "../components/homepage/ContentList";
+import ContentModal from "../components/homepage/ContentModal";
+import YoutubeSlider from "../components/homepage/YoutubeSlider";
+import YoutubeModal from "../components/homepage/YoutubeModal";
 import useContentDataStore from "../store/useContentDataStore";
 import useYoutubeDataStore from "../store/useYoutubeDataStore";
 export const Home = () => {
