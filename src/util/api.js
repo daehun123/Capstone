@@ -74,19 +74,40 @@ const refreshToken = async () => {
 };
 
 //북마크
-export const bookMark = async (data) => {
+export const onBookMark = async (data) => {
   const token = localStorage.getItem("accessToken");
   try {
-    return api.get(`/`, {
+    return api.post(`/api/save/content`, {
       headers: { Authorization: `Bearer ${token}` },
       body: { data },
     });
   } catch (error) {
     if (error.response && error.response.status === 401) {
       const re_token = await refreshToken();
-      return await axios.get(`/`, {
+      return await axios.post(`/api/save/content`, {
         headers: { Authorization: `Bearer ${re_token}` },
         body: { data },
+      });
+    } else if (error.response && error.response.status === 403) {
+      throw error;
+    }
+  }
+};
+
+//북마크 삭제
+export const onDeleteBookMark = async (id) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    return api.delete(`/api/save/content`, {
+      headers: { Authorization: `Bearer ${token}` },
+      body: { contents_id: [id] },
+    });
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+      return await axios.delete(`/api/save/content`, {
+        headers: { Authorization: `Bearer ${re_token}` },
+        body: { contents_id: [id] },
       });
     } else if (error.response && error.response.status === 403) {
       throw error;

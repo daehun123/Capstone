@@ -18,7 +18,7 @@ const ContentGrid = ({ itemId }) => {
         >
           <img
             src={item.thumbnail}
-            alt={item.name}
+            alt={item.title}
             className="w-full aspect-square object-cover rounded-lg"
           />
 

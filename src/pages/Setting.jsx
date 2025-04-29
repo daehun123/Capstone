@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../components/frame/Header.jsx";
 import Layout from "../components/frame/Layout.jsx";
-import { onDeleteAccount } from "../util/api";
+import { logout, onDeleteAccount } from "../util/api";
 
 const Setting = () => {
   const nav = useNavigate();
@@ -21,6 +21,15 @@ const Setting = () => {
             onClick={() => nav("/passwordset")}
           >
             비밀번호 변경
+          </button>
+          <button
+            className="w-full h-16 p-4 text-start border-b-2 font-bold text-lg"
+            onClick={() => {
+              logout();
+              nav("/");
+            }}
+          >
+            로그아웃
           </button>
         </div>
         <button

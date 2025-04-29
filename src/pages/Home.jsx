@@ -14,6 +14,7 @@ export const Home = () => {
   const nav = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectType, setSelectType] = useState(null);
+  const { sendBookmark } = useContentDataStore();
 
   const openModal = (item) => {
     setSelectedItem(item);
@@ -23,7 +24,8 @@ export const Home = () => {
     setSelectedItem(item);
     setSelectType("youtube");
   };
-  const closeModal = () => {
+  const closeModal = async () => {
+    //await sendBookmark();
     setSelectedItem(null);
     setSelectType(null);
   };
