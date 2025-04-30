@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import nlogin_btn from "../assets/btnG_축약형.png";
 import klogin_btn from "../assets/kakao_login_large.png";
 import AnimationLogo from "../components/firstpage/AnimationLogo";
+import { KAKAO_AUTH_URL } from "../util/outh/kakao.js";
 
 const FirstPage = () => {
   const nav = useNavigate();
@@ -28,10 +29,12 @@ const FirstPage = () => {
               src={nlogin_btn}
               className="cursor-pointer max-h-12 rounded-lg"
             />
-            <img
-              src={klogin_btn}
-              className="cursor-pointer max-h-12 rounded-lg"
-            />
+            <a href={KAKAO_AUTH_URL}>
+              <img
+                src={klogin_btn}
+                className="cursor-pointer max-h-12 rounded-lg"
+              />
+            </a>
           </div>
         </div>
       </div>

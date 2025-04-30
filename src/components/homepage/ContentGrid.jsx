@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Star } from "lucide-react";
+import { Bookmark, Star } from "lucide-react";
 import useContentDataStore from "../../store/useContentDataStore";
 
 const ContentGrid = ({ itemId }) => {
@@ -22,14 +22,24 @@ const ContentGrid = ({ itemId }) => {
             className="w-full aspect-square object-cover rounded-lg"
           />
 
-          <Star
-            className="text-yellow-400 absolute top-3 right-3 cursor-pointer"
-            fill={item.mark ? "yellow" : "white"}
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleBookmark(item.id);
-            }}
-          />
+          <div>
+            <Star
+              className={`cursor-pointer hover:scale-125 transition absolute right-4 top-1.5 size-4 z-10 ${
+                item.mark
+                  ? "fill-yellow-400 stroke-yellow-500"
+                  : "fill-white stroke-gray-300"
+              }`}
+              stroke-width="0"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleBookmark(item.id);
+              }}
+            />
+            <Bookmark
+              className="absolute right-2 top-0 size-8 fill-slate-100"
+              stroke-width="0"
+            />
+          </div>
 
           <figcaption className="text-sm text-center font-semibold mt-2 leading-tight tracking-tight line-clamp-2 h-[3.5rem]">
             {item.title}
