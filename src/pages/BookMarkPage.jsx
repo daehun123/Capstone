@@ -3,7 +3,7 @@ import Header from "../components/frame/Header";
 import Layout from "../components/frame/Layout";
 import useBookMarkItemStore from "../store/useBookMarkItemStore";
 
-const BookMarkPage = () => {
+export const BookMarkPage = () => {
   const setItem = useBookMarkItemStore.getState().setItem;
   setItem([
     {

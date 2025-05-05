@@ -1,33 +1,18 @@
-import { Route, Routes } from "react-router-dom";
-import { Login } from "./pages/Login";
-import { Signup } from "./pages/Signup";
-import { Notfound } from "./pages/Notfound";
-import { Home } from "./pages/Home";
-import FirstPage from "./pages/FirstPage";
-import MyPage from "./pages/Mypage";
-import Setting from "./pages/Setting";
+import { Outlet } from "react-router-dom";
+
 import { AnimatePresence } from "framer-motion";
-import BookMarkPage from "./pages/BookMarkPage";
-import EmailSetPage from "./pages/EmailSetPage";
-import PassWordSet from "./pages/PassWordSet";
+import Layout from "./components/frame/Layout";
+import { Suspense } from "react";
 
 function App() {
   return (
-    <AnimatePresence>
-      <Routes>
-        <Route path="/" element={<FirstPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/setting" element={<Setting />} />
-        <Route path="/bookmark" element={<BookMarkPage />} />
-        <Route path="/emailset" element={<EmailSetPage />} />
-        <Route path="/passwordset" element={<PassWordSet />} />
-
-        <Route path="*" element={<Notfound />} />
-      </Routes>
-    </AnimatePresence>
+    <Layout>
+      <Suspense fallback={<div className="p-10 text-center">로딩 중...</div>}>
+        <AnimatePresence>
+          <Outlet />
+        </AnimatePresence>
+      </Suspense>
+    </Layout>
   );
 }
 

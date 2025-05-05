@@ -19,7 +19,7 @@ const FirstPage = () => {
             로그인
           </button>
           <button
-            onClick={() => nav("signup")}
+            onClick={() => nav("/signup")}
             className="border rounded-xl min-w-full min-h-12 text-[#034AA6] border-[#034AA6] font-bold"
           >
             가입하기

@@ -29,7 +29,7 @@ const ContentGrid = ({ itemId }) => {
                   ? "fill-yellow-400 stroke-yellow-500"
                   : "fill-white stroke-gray-300"
               }`}
-              stroke-width="0"
+              strokeWidth="0"
               onClick={(e) => {
                 e.stopPropagation();
                 toggleBookmark(item.id);
@@ -37,7 +37,7 @@ const ContentGrid = ({ itemId }) => {
             />
             <Bookmark
               className="absolute right-2 top-0 size-8 fill-slate-100"
-              stroke-width="0"
+              strokeWidth="0"
             />
           </div>
 

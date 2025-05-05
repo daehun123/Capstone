@@ -59,8 +59,6 @@ const useContentDataStore = create((set, get) => ({
     } catch (err) {
       console.error(err);
     }
-
-    console.log("북마크 전송");
   },
 }));
 
