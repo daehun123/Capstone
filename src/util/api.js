@@ -77,17 +77,24 @@ const refreshToken = async () => {
 export const onBookMark = async (data) => {
   const token = localStorage.getItem("accessToken");
   try {
-    return api.post(`/api/save/content`, {
-      headers: { Authorization: `Bearer ${token}` },
-      body: { data },
-    });
+    return api.post(
+      `/api/save/content`,
+      { data },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
   } catch (error) {
     if (error.response && error.response.status === 401) {
       const re_token = await refreshToken();
-      return await axios.post(`/api/save/content`, {
-        headers: { Authorization: `Bearer ${re_token}` },
-        body: { data },
-      });
+      return await axios.post(
+        `/api/save/content`,
+        { data },
+
+        {
+          headers: { Authorization: `Bearer ${re_token}` },
+        }
+      );
     } else if (error.response && error.response.status === 403) {
       throw error;
     }
@@ -98,17 +105,23 @@ export const onBookMark = async (data) => {
 export const onDeleteBookMark = async (id) => {
   const token = localStorage.getItem("accessToken");
   try {
-    return api.delete(`/api/save/content`, {
-      headers: { Authorization: `Bearer ${token}` },
-      body: { contents_id: [id] },
-    });
+    return api.delete(
+      `/api/save/content`,
+      { contents_id: [id] },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
   } catch (error) {
     if (error.response && error.response.status === 401) {
       const re_token = await refreshToken();
-      return await axios.delete(`/api/save/content`, {
-        headers: { Authorization: `Bearer ${re_token}` },
-        body: { contents_id: [id] },
-      });
+      return await axios.delete(
+        `/api/save/content`,
+        { contents_id: [id] },
+        {
+          headers: { Authorization: `Bearer ${re_token}` },
+        }
+      );
     } else if (error.response && error.response.status === 403) {
       throw error;
     }
@@ -129,6 +142,44 @@ export const onDeleteAccount = async () => {
         headers: { Authorization: `Bearer ${re_token}` },
       });
     } else if (error.response && error.response.status === 403) {
+      throw error;
+    }
+  }
+};
+
+//비밀번호 변경
+export const onChangePassWord = async (oldpw, newpw) => {
+  let token = localStorage.getItem("accessToken");
+  try {
+    return await api.patch(
+      `/my-page/change/password`,
+      {
+        old_password: oldpw,
+        new_password: newpw,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+
+      return await api.patch(
+        `/my-page/change/password`,
+        {
+          old_password: oldpw,
+          new_password: newpw,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${re_token}`,
+          },
+        }
+      );
+    } else if (error.response && error.response.status === 400) {
       throw error;
     }
   }
