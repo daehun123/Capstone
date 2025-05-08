@@ -5,6 +5,18 @@ import { logout, onDeleteAccount } from "../util/api";
 
 const Setting = () => {
   const nav = useNavigate();
+  const handleAccount = async () => {
+    try {
+      const res = await onDeleteAccount();
+      if (res.status === 200) {
+        alert("탈퇴 완료");
+        nav("/", { replace: true });
+      }
+    } catch (error) {
+      alert("토큰 만료");
+      nav("/", { replace: true });
+    }
+  };
   return (
     <Layout>
       <Header title={"설정"} />
@@ -34,7 +46,7 @@ const Setting = () => {
         </div>
         <button
           className="w-full h-16 bg-red-500 text-white border rounded-xl text-xl font-semibold"
-          onClick={() => onDeleteAccount()}
+          onClick={handleAccount}
         >
           탈퇴하기
         </button>

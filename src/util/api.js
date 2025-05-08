@@ -184,3 +184,101 @@ export const onChangePassWord = async (oldpw, newpw) => {
     }
   }
 };
+
+export const getEmail = async () => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    return await api.get(`/connection/email`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+
+      return await api.patch(`/connection/email`, {
+        headers: {
+          Authorization: `Bearer ${re_token}`,
+        },
+      });
+    } else if (error.response && error.response.status === 403) {
+      throw error;
+    }
+  }
+};
+
+//이메일 삭제
+export const onDeleteEmail = async (email) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    return await api.patch(
+      `/connection/email`,
+      {
+        edit_email: [{ old_email: email, new_email: null }],
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+      return await api.patch(
+        `/connection/email`,
+        {
+          edit_email: [{ old_email: email, new_email: null }],
+        },
+        { headers: { Authorization: `Bearer ${re_token}` } }
+      );
+    } else if (error.response && error.response.status === 403) {
+      throw error;
+    }
+  }
+};
+
+//이메일 수정
+export const onChangeEmail = async (old_email, new_email) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    return await api.patch(
+      `/connection/email`,
+      {
+        edit_email: [{ old_email: old_email, new_email: new_email }],
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+      return await api.patch(
+        `/connection/email`,
+        {
+          edit_email: [{ old_email: old_email, new_email: new_email }],
+        },
+        { headers: { Authorization: `Bearer ${re_token}` } }
+      );
+    } else if (error.response) {
+      throw error;
+    }
+  }
+};
+
+//이메일 추기
+export const onAddEmail = async (email_list) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    return await api.post(
+      `/connection/email`,
+      { email: email_list },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      const re_token = await refreshToken();
+      return await api.post(
+        `/connection/email`,
+        { email: email_list },
+        { headers: { Authorization: `Bearer ${re_token}` } }
+      );
+    } else if (error.response) {
+      throw error;
+    }
+  }
+};
