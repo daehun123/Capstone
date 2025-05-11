@@ -42,7 +42,6 @@ export const getCode = async (email) => {
 export const logout = async () => {
   localStorage.removeItem("accessToken");
   localStorage.removeItem("refreshToken");
-  return api.post(`/`);
 };
 
 //데이터 요청
@@ -185,6 +184,7 @@ export const onChangePassWord = async (oldpw, newpw) => {
   }
 };
 
+//이메일 조회
 export const getEmail = async () => {
   const token = localStorage.getItem("accessToken");
   try {
@@ -260,13 +260,13 @@ export const onChangeEmail = async (old_email, new_email) => {
   }
 };
 
-//이메일 추기
-export const onAddEmail = async (email_list) => {
+//이메일 추가
+export const onAddEmail = async (emailArray) => {
   const token = localStorage.getItem("accessToken");
   try {
     return await api.post(
       `/connection/email`,
-      { email: email_list },
+      { email: emailArray },
       { headers: { Authorization: `Bearer ${token}` } }
     );
   } catch (error) {
@@ -274,7 +274,7 @@ export const onAddEmail = async (email_list) => {
       const re_token = await refreshToken();
       return await api.post(
         `/connection/email`,
-        { email: email_list },
+        { email: emailArray },
         { headers: { Authorization: `Bearer ${re_token}` } }
       );
     } else if (error.response) {
