@@ -10,6 +10,7 @@ import YoutubeSlider from "../components/homepage/YoutubeSlider";
 import YoutubeModal from "../components/homepage/YoutubeModal";
 import useContentDataStore from "../store/useContentDataStore";
 import useYoutubeDataStore from "../store/useYoutubeDataStore";
+import { toast } from "react-toastify";
 export const Home = () => {
   const nav = useNavigate();
   const [selectedItem, setSelectedItem] = useState(null);
@@ -149,7 +150,7 @@ export const Home = () => {
           ]);
         }
       } catch (error) {
-        alert("접근 불가! 로그인하세요");
+        toast.error("접근 불가! 로그인하세요");
         console.log(error);
         nav("/", { replace: true });
       }

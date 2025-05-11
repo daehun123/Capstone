@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { signup, getCode } from "../../util/api";
 import { Check } from "lucide-react";
+import { toast } from "react-toastify";
 
 const SignupForm = () => {
   const {
@@ -34,7 +35,7 @@ const SignupForm = () => {
 
   const handleSendCode = async () => {
     if (!email) {
-      alert("이메일을 먼저 입력해주세요.");
+      toast("이메일을 먼저 입력해주세요.");
       return;
     }
     try {
@@ -43,18 +44,18 @@ const SignupForm = () => {
       setReceivedCode(received);
       setCodeSent(true);
       setTimer(180);
-      alert("인증 코드가 전송되었습니다.");
+      toast("인증 코드가 전송되었습니다.");
     } catch (error) {
-      alert("인증 코드 전송 실패");
+      toast("인증 코드 전송 실패");
     }
   };
 
   const handleVerifyCode = () => {
     if (code === receivedCode) {
       setAuthPassed(true);
-      alert("이메일 인증 성공!");
+      toast("이메일 인증 성공!");
     } else {
-      alert("인증 코드가 올바르지 않습니다.");
+      toast("인증 코드가 올바르지 않습니다.");
     }
   };
 
@@ -67,15 +68,15 @@ const SignupForm = () => {
         data.birth
       );
       if (res.status === 201) {
-        alert("회원가입 성공!");
+        toast("회원가입 성공!");
         nav("/");
       }
     } catch (error) {
       if (error.response?.status === 400) {
-        alert("이미 존재하는 사용자입니다.");
+        toast("이미 존재하는 사용자입니다.");
         nav("/");
       } else {
-        alert("회원가입 실패!");
+        toast("회원가입 실패!");
       }
     }
   };

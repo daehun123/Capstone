@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../util/api";
 import Layout from "../components/frame/Layout.jsx";
 import Header from "../components/frame/Header.jsx";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const nav = useNavigate();
@@ -17,9 +18,9 @@ export const Login = () => {
       }
     } catch (error) {
       if (error.response?.status === 400) {
-        alert("이메일, 비밀번호가 틀렸습니다.");
+        toast.error("이메일, 비밀번호가 틀렸습니다.");
       } else {
-        alert("존재하지 않는 회원입니다.");
+        toast.error("존재하지 않는 회원입니다.");
       }
     }
   };

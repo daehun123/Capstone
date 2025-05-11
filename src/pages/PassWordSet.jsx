@@ -3,6 +3,7 @@ import Header from "../components/frame/Header.jsx";
 import Layout from "../components/frame/Layout.jsx";
 import { onChangePassWord } from "../util/api.js";
 import { replace, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const PassWordSet = () => {
   const [oldpw, setOldPw] = useState("");
@@ -10,31 +11,31 @@ const PassWordSet = () => {
   const nav = useNavigate();
   const onChangeHandler = async () => {
     if (!oldpw || !newpw) {
-      alert("모든 항목을 입력해주세요.");
+      toast.error("모든 항목을 입력해주세요.");
       return;
     }
 
     if (oldpw === newpw) {
-      alert("기존 비밀번호와 새 비밀번호가 같습니다.");
+      toast.error("기존 비밀번호와 새 비밀번호가 같습니다.");
       return;
     }
 
     if (newpw.length < 8) {
-      alert("비밀번호는 최소 8자 이상이어야 합니다.");
+      toast.error("비밀번호는 최소 8자 이상이어야 합니다.");
       return;
     }
 
     try {
       const res = await onChangePassWord(oldpw, newpw);
       if (res.status === 200) {
-        alert("비밀번호 변경 완료!");
+        toast.success("비밀번호 변경 완료!");
         nav("/home", { replace: true });
       }
     } catch (error) {
       if (error.response?.status === 400) {
-        alert("기존 비밀번호가 틀렸습니다.");
+        toast.error("기존 비밀번호가 틀렸습니다.");
       } else {
-        alert("토큰 만료 재로그인 해주세요.");
+        toast.error("토큰 만료 재로그인 해주세요.");
       }
     }
   };

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/frame/Header.jsx";
 import Layout from "../components/frame/Layout.jsx";
 import { logout, onDeleteAccount } from "../util/api";
+import { toast } from "react-toastify";
 
 const Setting = () => {
   const nav = useNavigate();
@@ -9,11 +10,11 @@ const Setting = () => {
     try {
       const res = await onDeleteAccount();
       if (res.status === 200) {
-        alert("탈퇴 완료");
+        toast.success("탈퇴 완료");
         nav("/", { replace: true });
       }
     } catch (error) {
-      alert("토큰 만료");
+      toast.error("토큰 만료");
       nav("/", { replace: true });
     }
   };
