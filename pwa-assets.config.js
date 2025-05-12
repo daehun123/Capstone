@@ -4,9 +4,12 @@ import {
 } from "@vite-pwa/assets-generator/config";
 
 export default defineConfig({
+  preset,
   headLinkOptions: {
     preset: "2023",
   },
-  preset,
-  images: ["public/logo.png"],
+  images: ["/public/pwa-512x512.png"],
+  transparent: true,
+  apple: true,
+  splash: true,
 });

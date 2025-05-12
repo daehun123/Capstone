@@ -10,20 +10,10 @@ export default defineConfig({
       registerType: "autoUpdate",
       injectRegister: "auto",
 
-      pwaAssets: {
-        disabled: false,
-        config: true,
-      },
-
-      manifest: {
-        name: "Capstone",
-        short_name: "Capstone",
-        description: "졸업 프로젝트",
-        theme_color: "#ffffff",
-      },
+      manifest: "/manifest.webmanifest",
 
       workbox: {
-        globPatterns: ["**/*.{js,css,html,svg,png,ico}"],
+        globPatterns: ["**/*.{js,css,html,svg,png,ico,webmanifest}"],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
       },
