@@ -10,7 +10,7 @@ export default defineConfig({
       injectRegister: "auto",
       manifest: {
         id: "/",
-        name: "Capstone",
+        name: "알고보자",
         short_name: "Capstone",
         description: "졸업 프로젝트",
         start_url: "/",
@@ -42,7 +42,7 @@ export default defineConfig({
         clientsClaim: true,
       },
       devOptions: {
-        enabled: false,
+        enabled: true,
         navigateFallback: "index.html",
         suppressWarnings: true,
         type: "module",
