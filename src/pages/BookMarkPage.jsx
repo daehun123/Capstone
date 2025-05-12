@@ -1,4 +1,4 @@
-import BookMarkPageGrid from "../components/bookmarkpage/bookmarkgrid";
+import BookMarkPageGrid from "../components/bookmarkpage/BookMarkGrid";
 import Header from "../components/frame/Header";
 import Layout from "../components/frame/Layout";
 import useBookMarkItemStore from "../store/useBookMarkItemStore";
