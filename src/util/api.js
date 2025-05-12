@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/useAuthStore";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -13,7 +14,7 @@ const api = axios.create({
 
 // 인터셉터 토큰 관리
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem("accessToken");
+  const token = useAuthStore.getState().accessToken;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -31,16 +32,13 @@ api.interceptors.response.use(
           withCredentials: true,
         });
         const { accessToken, refreshToken } = res.data.data;
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        useAuthStore.getState().login(accessToken, refreshToken);
 
         originalRequest.headers.Authorization = `Bearer ${accessToken}`;
         return api(originalRequest);
       } catch (error) {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("refreshToken");
-        const nav = useNavigate();
-        nav("/", { replace: true });
+        useAuthStore.getState().logout();
+        window.location.href = "/login";
         return Promise.reject(error);
       }
     }
@@ -56,14 +54,12 @@ export const getCode = async (email) => {
 export const login = async (email, password) => {
   const response = await api.post(`/login`, { email, password });
   const { accessToken, refreshToken } = response.data.data;
-  localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("refreshToken", refreshToken);
+  useAuthStore.getState().login(accessToken, refreshToken);
   return response;
 };
 // 로그아웃
 export const logout = () => {
-  localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
+  useAuthStore.getState().logout();
 };
 // 회원가입
 export const signup = async (name, email, password, birthdate) => {

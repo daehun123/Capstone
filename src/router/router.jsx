@@ -2,6 +2,8 @@ import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { Notfound } from "../pages/Notfound";
 import App from "../App";
+import ProtectedRoute from "./ProtectedRoute";
+import PublicOnlyRoute from "./PublicOnlyRoute";
 
 const FirstPage = lazy(() => import("../pages/FirstPage"));
 const Login = lazy(() => import("../pages/Login"));
@@ -23,26 +25,70 @@ export const router = createBrowserRouter([
         index: true,
         element: <FirstPage />,
       },
-      { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup /> },
+      {
+        path: "login",
+        element: (
+          <PublicOnlyRoute>
+            <Login />
+          </PublicOnlyRoute>
+        ),
+      },
+      {
+        path: "signup",
+        element: (
+          <PublicOnlyRoute>
+            <Signup />
+          </PublicOnlyRoute>
+        ),
+      },
       {
         path: "home",
-        element: <Home />,
+        element: (
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "mypage",
-        element: <MyPage />,
+        element: (
+          <ProtectedRoute>
+            <MyPage />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "setting",
-        element: <Setting />,
+        element: (
+          <ProtectedRoute>
+            <Setting />
+          </ProtectedRoute>
+        ),
       },
-      { path: "emailset", element: <EmailSetPage /> },
+      {
+        path: "emailset",
+        element: (
+          <ProtectedRoute>
+            <EmailSetPage />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "passwordset",
-        element: <PassWordSet />,
+        element: (
+          <ProtectedRoute>
+            <PassWordSet />
+          </ProtectedRoute>
+        ),
       },
-      { path: "bookmark", element: <BookMarkPage /> },
+      {
+        path: "bookmark",
+        element: (
+          <ProtectedRoute>
+            <BookMarkPage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
 ]);
