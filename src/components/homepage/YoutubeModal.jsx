@@ -1,9 +1,24 @@
 import { X } from "lucide-react";
 import { useEffect } from "react";
+import { getYoutubeDes } from "../../util/api";
+import useYoutubeDataStore from "../../store/useYoutubeDataStore";
 
 const YoutubeModal = ({ item, onClose }) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
+    const getDes = async () => {
+      try {
+        const res = await getYoutubeDes(item.id);
+        const setDesc = useYoutubeDataStore.getState().setDescriptionItem;
+        if (res.status === 200) {
+          setDesc(item.id, res.data.data.description);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getDes();
+    const { items } = useYoutubeDataStore();
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -40,7 +55,7 @@ const YoutubeModal = ({ item, onClose }) => {
 
         <button
           className="mt-6 bg-[#034AA6] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#022f6b] transition w-full"
-          onClick={() => window.open(item.link)}
+          onClick={() => window.open(item.url)}
         >
           🎥 영상 보러 가기
         </button>

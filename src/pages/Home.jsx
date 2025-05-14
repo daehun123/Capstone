@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getData, getUserData } from "../util/api";
+import { getData, getElseData, getUserData, getYoutubeData } from "../util/api";
 import { useNavigate } from "react-router-dom";
 import Layout from "../components/frame/Layout.jsx";
 import MainHeader from "../components/frame/MainHeader";
@@ -53,10 +53,15 @@ export const Home = () => {
     const fetchData = async () => {
       try {
         const res = await getData();
+        const res_else = await getElseData();
+        //const res_youtube = await getYoutubeData();
         const setItems = useContentDataStore.getState().setItems;
         const setYItems = useYoutubeDataStore.getState().setItems;
-
-        if (res.status === 200) {
+        if (
+          res.status === 200 &&
+          res_else.status === 200 //&&
+          //res_youtube.status === 200
+        ) {
           const naverResults = res.data.data?.naver_results;
           const naverPlaces = res.data.data?.naver_places;
 
@@ -99,6 +104,7 @@ export const Home = () => {
             return;
           }
 
+          //setYItems(res_youtube.data.data);
           setItems(combinedItems);
         }
       } catch (error) {
@@ -107,7 +113,6 @@ export const Home = () => {
         nav("/", { replace: true });
       }
     };
-
     fetchData();
     getUserName();
   }, []);

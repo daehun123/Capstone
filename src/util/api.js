@@ -66,11 +66,27 @@ export const signup = async (name, email, password, birthdate) => {
   return api.post(`/signup`, { name, email, password, birthdate });
 };
 
-// 데이터 요청
+// 추천 데이터 요청
 export const getData = async () => {
   return api.get(`/api/recommend`);
 };
 
+// sometingelse 데이터 요청
+export const getElseData = async () => {
+  return api.get(`/api/recommend/something-else`);
+};
+
+// 유튜브 데이터 요청
+export const getYoutubeData = async () => {
+  return api.get(`/api/recommend/youtube`);
+};
+
+//유튜브 요약 요청
+export const getYoutubeDes = async (id) => {
+  return api.get(`/api/recommend/youtube/summary`, {
+    params: { video_id: id },
+  });
+};
 // 북마크 저장
 export const onBookMark = async (data) => {
   return api.post(`/api/save/content`, { data });
