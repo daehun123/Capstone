@@ -66,9 +66,9 @@ export const signup = async (name, email, password, birthdate) => {
   return api.post(`/signup`, { name, email, password, birthdate });
 };
 
-// 데이터 요청 (자동 토큰 갱신)
+// 데이터 요청
 export const getData = async () => {
-  return api.get(`/hello`);
+  return api.get(`/api/recommend`);
 };
 
 // 북마크 저장
@@ -116,4 +116,9 @@ export const onChangeEmail = async (old_email, new_email) => {
 // 이메일 추가
 export const onAddEmail = async (emailArray) => {
   return api.post(`/connection/email`, { email: emailArray });
+};
+
+// 사용자 정보 조회
+export const getUserData = async () => {
+  return api.get(`/my-page`);
 };

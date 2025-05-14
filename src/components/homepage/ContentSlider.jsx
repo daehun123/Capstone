@@ -14,15 +14,20 @@ const ContentSlider = ({ onItemClick }) => {
     arrows: false,
   };
 
+  // ✅ unique groupId 기준으로 그룹핑
+  const uniqueGroups = Array.from(
+    new Map(items.map((item) => [item.groupId, item])).values()
+  );
+
   return (
     <section className=" min-h-80 p-4 bg-white pb-6">
       <h2 className="text-xl font-extrabold text-[#034AA6] pb-6">
         Today&apos;s Show
       </h2>
       <Slider {...settings} className="w-full">
-        {items.map((item) => (
+        {uniqueGroups.map((item) => (
           <div
-            key={item.id}
+            key={item.groupId}
             onClick={() => onItemClick(item)}
             className="w-full min-h-64 cursor-pointer transition duration-200 hover:bg-gray-50"
           >
@@ -31,13 +36,13 @@ const ContentSlider = ({ onItemClick }) => {
               className="flex flex-col items-center justify-center space-y-2 "
             >
               <img
-                src={item.thumbnail}
-                alt={item.name}
+                src={item.image}
+                alt={item.groupId}
                 tabIndex={-1}
                 className=" h-52 object-cover rounded-lg"
               />
               <figcaption className="text-center font-bold text-lg">
-                {item.name}
+                {item.groupId}
               </figcaption>
             </figure>
           </div>

@@ -1,8 +1,11 @@
 import { X } from "lucide-react";
 import ContentGrid from "./ContentGrid";
 import { useEffect } from "react";
+import useContentDataStore from "../../store/useContentDataStore";
 
 const ContentModal = ({ item, onClose }) => {
+  const { items } = useContentDataStore();
+
   if (!item) return null;
 
   useEffect(() => {
@@ -11,6 +14,8 @@ const ContentModal = ({ item, onClose }) => {
       document.body.style.overflow = "auto";
     };
   }, []);
+
+  const count = items.filter((i) => i.groupId === item.groupId).length;
 
   return (
     <div
@@ -29,20 +34,18 @@ const ContentModal = ({ item, onClose }) => {
         <div className="flex items-center justify-between border-b-2 pb-3 gap-3">
           <div className="flex items-center gap-3">
             <img
-              src={item.thumbnail}
-              alt={item.name}
+              src={item.image}
+              alt={item.groupId}
               className="w-16 h-16 object-cover rounded-lg"
             />
             <div className="flex flex-col text-left">
-              <h2 className="text-lg font-extrabold">{item.name}</h2>
-              <p className="text-sm text-gray-500">
-                {item.detail?.length || 0}개 추천
-              </p>
+              <h2 className="text-lg font-extrabold">{item.groupId}</h2>
+              <p className="text-sm text-gray-500">{count}개 아이템 추천</p>
             </div>
           </div>
         </div>
 
-        <ContentGrid itemId={item.id} />
+        <ContentGrid groupId={item.groupId} />
       </section>
     </div>
   );

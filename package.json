@@ -13,6 +13,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/line-clamp": "^0.4.4",
     "axios": "^1.8.3",
+    "dompurify": "^3.2.5",
     "framer-motion": "^12.6.2",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.485.0",

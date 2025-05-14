@@ -6,9 +6,15 @@ const Header = ({ title, system }) => {
 
   return (
     <header className="fixed z-50 w-full gap-3 max-w-md h-20 border-b border-blue-300/50 shadow-sm backdrop-blur-md flex items-center px-4 bg-white">
-      <button onClick={() => nav(-1)} className="z-10">
-        <ArrowLeft size={28} />
-      </button>
+      {title === "로그인" || title === "회원가입" ? (
+        <button onClick={() => nav("/")} className="z-10">
+          <ArrowLeft size={28} />
+        </button>
+      ) : (
+        <button onClick={() => nav(-1)} className="z-10">
+          <ArrowLeft size={28} />
+        </button>
+      )}
 
       <h1 className="font-bold text-lg">{title}</h1>
       {system === true ? (

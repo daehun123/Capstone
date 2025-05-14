@@ -1,12 +1,11 @@
-import { useNavigate } from "react-router-dom";
 import { Bookmark, Star } from "lucide-react";
 import useContentDataStore from "../../store/useContentDataStore";
+import DOMPurify from "dompurify";
 
-const ContentGrid = ({ itemId }) => {
-  const nav = useNavigate();
+const ContentGrid = ({ groupId }) => {
   const { items, toggleBookmark } = useContentDataStore();
 
-  const detail = items.find((group) => group.id === itemId)?.detail || [];
+  const detail = items.filter((item) => item.groupId === groupId);
 
   return (
     <div className="grid grid-cols-2 gap-4 scroll-smooth scrollbar-hide overflow-y-auto h-[calc(100%-7rem)] mt-4">
@@ -17,7 +16,7 @@ const ContentGrid = ({ itemId }) => {
           className="cursor-pointer flex flex-col justify-center items-center bg-white rounded-xl shadow-sm p-2 relative"
         >
           <img
-            src={item.thumbnail}
+            src={item.image}
             alt={item.title}
             className="w-full aspect-square object-cover rounded-lg"
           />
@@ -41,9 +40,10 @@ const ContentGrid = ({ itemId }) => {
             />
           </div>
 
-          <figcaption className="text-sm text-center font-semibold mt-2 leading-tight tracking-tight line-clamp-2 h-[3.5rem]">
-            {item.title}
-          </figcaption>
+          <figcaption
+            className="text-sm text-center font-semibold mt-2 leading-tight tracking-tight line-clamp-2 h-[3.5rem]"
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.title) }}
+          />
         </figure>
       ))}
     </div>
