@@ -6,7 +6,6 @@ const ContentGrid = ({ groupId }) => {
   const { items, toggleBookmark } = useContentDataStore();
 
   const detail = items.filter((item) => item.groupId === groupId);
-
   return (
     <div className="grid grid-cols-2 gap-4 scroll-smooth scrollbar-hide overflow-y-auto h-[calc(100%-7rem)] mt-4">
       {detail.map((item) => (
@@ -44,6 +43,9 @@ const ContentGrid = ({ groupId }) => {
             className="text-sm text-center font-semibold mt-2 leading-tight tracking-tight line-clamp-2 h-[3.5rem]"
             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.title) }}
           />
+          <figcaption className="text-sm font-semibold w-full border-t-2 text-red-500">
+            {item.lprice}원
+          </figcaption>
         </figure>
       ))}
     </div>
