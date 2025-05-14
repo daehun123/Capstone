@@ -25,7 +25,7 @@ const AnimationLogo = () => {
   }, []);
 
   return (
-    <div className="relative mt-10 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-l h-[500px]">
+    <div className="relative mt-10 mx-auto w-full max-w-l  h-[500px]">
       {/* 메인 로고 */}
       <motion.img
         src={main_logo}
