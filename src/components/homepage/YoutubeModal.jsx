@@ -4,8 +4,12 @@ import { getYoutubeDes } from "../../util/api";
 import useYoutubeDataStore from "../../store/useYoutubeDataStore";
 
 const YoutubeModal = ({ item, onClose }) => {
+  const items = useYoutubeDataStore((state) => state.items);
+  const targetItem = items.find((i) => i.id === item.id);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
+
     const getDes = async () => {
       try {
         const res = await getYoutubeDes(item.id);
@@ -17,12 +21,16 @@ const YoutubeModal = ({ item, onClose }) => {
         console.log(error);
       }
     };
-    getDes();
-    const { items } = useYoutubeDataStore();
+
+    if (!targetItem?.description) {
+      getDes();
+    }
+
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, []);
+  }, [item.id, targetItem?.description]);
+
   if (!item) return null;
 
   return (
@@ -50,7 +58,7 @@ const YoutubeModal = ({ item, onClose }) => {
         </div>
 
         <figcaption className="whitespace-pre-line text-sm mt-2 text-gray-700">
-          {item.description}
+          {targetItem?.description || "설명 불러오는 중..."}
         </figcaption>
 
         <button

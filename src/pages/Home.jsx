@@ -54,17 +54,16 @@ export const Home = () => {
       try {
         const res = await getData();
         const res_else = await getElseData();
-        //const res_youtube = await getYoutubeData();
+        const res_youtube = await getYoutubeData();
         const setItems = useContentDataStore.getState().setItems;
         const setYItems = useYoutubeDataStore.getState().setItems;
         if (
           res.status === 200 &&
-          res_else.status === 200 //&&
-          //res_youtube.status === 200
+          res_else.status === 200 &&
+          res_youtube.status === 200
         ) {
           const naverResults = res.data.data?.naver_results;
           const naverPlaces = res.data.data?.naver_places;
-
           let combinedItems = [];
 
           if (naverResults) {
@@ -104,7 +103,7 @@ export const Home = () => {
             return;
           }
 
-          //setYItems(res_youtube.data.data);
+          setYItems(res_youtube.data.data);
           setItems(combinedItems);
         }
       } catch (error) {

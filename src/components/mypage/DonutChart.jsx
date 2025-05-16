@@ -1,13 +1,56 @@
+import { useEffect, useState } from "react";
 import { RadialBarChart, RadialBar, PolarAngleAxis, Legend } from "recharts";
+import { getChart } from "../../util/api";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DonutChart = () => {
-  const data = [
-    { name: "가죽", value: 350, fill: "#211C84" },
-    { name: "A-2", value: 280, fill: "#4D55CC" },
-    { name: "쿄듀로이", value: 200, fill: "#7A73D1" },
-    { name: "조거", value: 120, fill: "#B5A8D5" },
-    { name: "청바지", value: 70, fill: "#BEBACF" },
-  ];
+  const nav = useNavigate();
+  const [scoreGroup, setScoreGroup] = useState([]);
+
+  useEffect(() => {
+    const getScore = async () => {
+      try {
+        const res = await getChart();
+        if (res.status === 200) {
+          const rawData = res.data.data.slice(0, 5);
+          const total = rawData.reduce((acc, item) => acc + item.score, 0);
+
+          const colors = [
+            "#211C84",
+            "#4D55CC",
+            "#7A73D1",
+            "#B5A8D5",
+            "#BEBACF",
+          ];
+
+          const formattedData = rawData.map((item, index) => ({
+            name: item.keyword,
+            value: Math.round((item.score / total) * 360),
+            fill: colors[index % colors.length],
+          }));
+
+          setScoreGroup(formattedData);
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("접근 불가! 로그인하세요");
+        nav("/", { replace: true });
+      }
+    };
+    getScore();
+  }, []);
+
+  if (scoreGroup.length === 0) {
+    return (
+      <div className="text-center text-gray-500 mt-10">
+        알고리즘 수집이 더 필요합니다.
+      </div>
+    );
+  }
+
+  const data = scoreGroup;
+
   return (
     <div className="flex flex-col">
       <div className="text-sm text-gray-600 text-center mt-2">
@@ -29,7 +72,7 @@ const DonutChart = () => {
       >
         <PolarAngleAxis
           type="number"
-          domain={[0, 400]}
+          domain={[0, 360]}
           angleAxisId={0}
           tick={false}
         />

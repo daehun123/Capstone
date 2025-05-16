@@ -87,6 +87,7 @@ export const getYoutubeDes = async (id) => {
     params: { video_id: id },
   });
 };
+
 // 북마크 저장
 export const onBookMark = async (data) => {
   return api.post(`/api/save/content`, { data });
@@ -137,4 +138,9 @@ export const onAddEmail = async (emailArray) => {
 // 사용자 정보 조회
 export const getUserData = async () => {
   return api.get(`/my-page`);
+};
+
+// 알고리즘 차트 조회
+export const getChart = async () => {
+  return api.get(`/my-page/chart`);
 };

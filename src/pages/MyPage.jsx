@@ -3,10 +3,11 @@ import Header from "../components/frame/Header.jsx";
 import Lottie from "lottie-react";
 import animation from "../assets/Animation.json";
 import DonutChart from "../components/mypage/DonutChart";
-import { useState } from "react";
+import useUserDataStore from "../store/useUserDataStore.js";
 
 const MyPage = () => {
   const system = true;
+  const { info } = useUserDataStore();
   return (
     <Layout>
       <Header title={"마이페이지"} system={system} />
@@ -17,7 +18,7 @@ const MyPage = () => {
           </div>
 
           <div className="text-gray-800 font-semibold text-base text-left">
-            <span className="text-[#034AA6] font-bold">강대훈</span>님 현재
+            <span className="text-[#034AA6] font-bold">{info.name}</span>님 현재
             관심사 그래프입니다!
           </div>
         </div>

@@ -8,6 +8,12 @@ export default defineConfig({
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "auto",
+      includeAssets: [
+        "favicon.ico",
+        "pwa-192x192.png",
+        "pwa-512x512.png",
+        "maskable-icon-512x512.png",
+      ],
       manifest: {
         id: "/",
         name: "알고보자",
@@ -22,11 +28,13 @@ export default defineConfig({
             src: "/pwa-192x192.png",
             sizes: "192x192",
             type: "image/png",
+            purpose: "any",
           },
           {
             src: "/pwa-512x512.png",
             sizes: "512x512",
             type: "image/png",
+            purpose: "any",
           },
           {
             src: "/maskable-icon-512x512.png",
@@ -40,10 +48,11 @@ export default defineConfig({
         globPatterns: ["**/*.{js,css,html,svg,png,ico,webmanifest}"],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
+        skipWaiting: true,
       },
       devOptions: {
-        enabled: true,
-        navigateFallback: "index.html",
+        //enabled: true,
+        navigateFallback: "/index.html",
         suppressWarnings: true,
         type: "module",
       },
