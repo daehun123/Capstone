@@ -13,6 +13,9 @@ import useYoutubeDataStore from "../store/useYoutubeDataStore";
 import { toast } from "react-toastify";
 import useUserDataStore from "../store/useUserDataStore.js";
 import { v4 as uuidv4 } from "uuid";
+import ContentSkeleton from "../components/skeleton/ContentSkeleton";
+import YoutubeSkeleton from "../components/skeleton/YoutubeSkeleton";
+import ContentListSkeleton from "../components/skeleton/ContentListSkeleton.jsx";
 
 export const Home = () => {
   const nav = useNavigate();
@@ -20,6 +23,7 @@ export const Home = () => {
   const [selectType, setSelectType] = useState(null);
   const { sendBookmark } = useContentDataStore();
   const [username, setUserName] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const openModal = (item) => {
     setSelectedItem(item);
@@ -110,8 +114,11 @@ export const Home = () => {
         console.error(error);
         toast.error("데이터 로딩 실패");
         nav("/", { replace: true });
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchData();
     getUserName();
   }, []);
@@ -125,8 +132,16 @@ export const Home = () => {
           추천이에요!
         </p>
         <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
-          <ContentSlider onItemClick={openModal} />
-          <YoutubeSlider onItemClick={openYModal} />
+          {loading ? (
+            <ContentSkeleton />
+          ) : (
+            <ContentSlider onItemClick={openModal} />
+          )}
+          {loading ? (
+            <YoutubeSkeleton />
+          ) : (
+            <YoutubeSlider onItemClick={openYModal} />
+          )}
 
           <section className=" border-t-2 border-gray-200">
             <div className="flex flex-col items-start pl-4 pt-4">
@@ -137,7 +152,11 @@ export const Home = () => {
                 이런 느낌은 어떨까요?
               </p>
             </div>
-            <ContentList onItemClick={openModal} />
+            {loading ? (
+              <ContentListSkeleton />
+            ) : (
+              <ContentList onItemClick={openModal} />
+            )}
           </section>
         </article>
         {selectedItem && selectType === "content" && (
@@ -150,4 +169,5 @@ export const Home = () => {
     </Layout>
   );
 };
+
 export default Home;
