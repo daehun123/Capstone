@@ -18,6 +18,7 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+  // console.log("Axios Request Config:", config);
   return config;
 });
 
@@ -90,12 +91,17 @@ export const getYoutubeDes = async (id) => {
 
 // 북마크 저장
 export const onBookMark = async (data) => {
-  return api.post(`/api/save/content`, { data });
+  return api.post(`/api/save/content`, { contents: data });
 };
 
 // 북마크 삭제
 export const onDeleteBookMark = async (id) => {
-  return api.delete(`/api/save/content`, { data: { contents_id: [id] } });
+  return api.delete(`/api/save/content`, { data: { contents_id: id } });
+};
+
+// 북마크 리스트 가져오기
+export const getBookMarkList = async () => {
+  return api.get(`/api/save/content`);
 };
 
 // 탈퇴

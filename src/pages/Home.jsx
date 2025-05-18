@@ -34,6 +34,7 @@ export const Home = () => {
     setSelectType("youtube");
   };
   const closeModal = async () => {
+    await sendBookmark();
     setSelectedItem(null);
     setSelectType(null);
   };
@@ -58,13 +59,13 @@ export const Home = () => {
       try {
         const res = await getData();
         const res_else = await getElseData();
-        const res_youtube = await getYoutubeData();
+        //const res_youtube = await getYoutubeData();
         const setItems = useContentDataStore.getState().setItems;
         const setYItems = useYoutubeDataStore.getState().setItems;
         if (
           res.status === 200 &&
-          res_else.status === 200 &&
-          res_youtube.status === 200
+          res_else.status === 200 //&&
+          //res_youtube.status === 200
         ) {
           const naverResults = res.data.data?.naver_results;
           const naverPlaces = res.data.data?.naver_places;
@@ -80,6 +81,7 @@ export const Home = () => {
                     type: "shopping",
                     groupId: key,
                     id: item.productId || uuidv4(),
+                    mark: false,
                   }))
                 );
               }
@@ -96,6 +98,7 @@ export const Home = () => {
                     type: "places",
                     groupId: key,
                     id: item.id || uuidv4(),
+                    mark: false,
                   }))
                 );
               }
@@ -107,7 +110,7 @@ export const Home = () => {
             return;
           }
 
-          setYItems(res_youtube.data.data);
+          //setYItems(res_youtube.data.data);
           setItems(combinedItems);
         }
       } catch (error) {
@@ -121,6 +124,8 @@ export const Home = () => {
 
     fetchData();
     getUserName();
+    const interval = setInterval(fetchData, 5 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

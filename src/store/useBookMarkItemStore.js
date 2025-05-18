@@ -20,18 +20,18 @@ const useBookMarkItemStore = create((set, get) => ({
 
   deleteBookmark: async () => {
     const { items } = get();
-    const deleteItem = [];
-    items.forEach((value) => {
-      if (!value.mark) {
-        deleteItem.push({
-          contents_id: [value.id],
-        });
-      }
-    });
+    const deleteItem = items
+      .filter((value) => !value.mark)
+      .map((value) => value.id);
 
     if (deleteItem.length > 0) {
       await onDeleteBookMark(deleteItem);
     }
+  },
+  getUnmarkedIds: () => {
+    return get()
+      .items.filter((item) => !item.mark)
+      .map((item) => item.id);
   },
 }));
 
