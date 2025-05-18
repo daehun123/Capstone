@@ -4,6 +4,7 @@ import nlogin_btn from "../assets/btnG_축약형.png";
 import klogin_btn from "../assets/kakao_login_large.png";
 import AnimationLogo from "../components/firstpage/AnimationLogo";
 import { KAKAO_AUTH_URL } from "../util/outh/kakao.js";
+import { NAVER_AUTH_URL } from "../util/outh/naver.js";
 
 const FirstPage = () => {
   const nav = useNavigate();
@@ -25,10 +26,13 @@ const FirstPage = () => {
             가입하기
           </button>
           <div className="flex justify-center space-x-3">
-            <img
-              src={nlogin_btn}
-              className="cursor-pointer max-h-12 rounded-lg"
-            />
+            <a href={NAVER_AUTH_URL}>
+              <img
+                src={nlogin_btn}
+                className="cursor-pointer max-h-12 rounded-lg"
+              />
+            </a>
+
             <a href={KAKAO_AUTH_URL}>
               <img
                 src={klogin_btn}
