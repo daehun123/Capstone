@@ -43,7 +43,7 @@ const DonutChart = () => {
 
   if (scoreGroup.length === 0) {
     return (
-      <div className="text-center text-gray-500 mt-10">
+      <div className="text-center text-gray-500 mt-10 h-60">
         알고리즘 수집이 더 필요합니다.
       </div>
     );

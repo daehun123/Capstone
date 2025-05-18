@@ -14,7 +14,6 @@ const ContentSlider = ({ onItemClick }) => {
     arrows: false,
   };
 
-  // ✅ unique groupId 기준으로 그룹핑
   const uniqueGroups = Array.from(
     new Map(items.map((item) => [item.groupId, item])).values()
   );
