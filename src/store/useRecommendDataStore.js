@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { onBookMark, onDeleteBookMark } from "../util/api";
+import { onBookMark } from "../util/api";
 
-const useContentDataStore = create((set, get) => ({
+const useRecommendDataStore = create((set, get) => ({
   items: [],
   originalItems: [],
 
@@ -47,7 +47,7 @@ const useContentDataStore = create((set, get) => ({
             title: item.title,
             link: item.link,
             image: item.image,
-            price: item.price,
+            lprice: item.price,
             hprice: item.hprice,
             mallName: item.mallName,
             productId: item.productId,
@@ -57,9 +57,9 @@ const useContentDataStore = create((set, get) => ({
             type: item.type,
             title: item.title,
             address: item.address,
-            category: item.category,
             lat: item.lat,
             lng: item.lng,
+            category: item.category,
             link: item.link,
           });
         }
@@ -78,4 +78,4 @@ const useContentDataStore = create((set, get) => ({
   },
 }));
 
-export default useContentDataStore;
+export default useRecommendDataStore;

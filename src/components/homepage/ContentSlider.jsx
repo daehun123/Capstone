@@ -2,6 +2,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import useContentDataStore from "../../store/useContentDataStore";
+import LeafletMap from "../map/Leaflet";
 
 const ContentSlider = ({ onItemClick }) => {
   const { items } = useContentDataStore();
@@ -34,12 +35,20 @@ const ContentSlider = ({ onItemClick }) => {
               tabIndex={-1}
               className="flex flex-col items-center justify-center space-y-2 "
             >
-              <img
-                src={item.image}
-                alt={item.groupId}
-                tabIndex={-1}
-                className=" h-52 object-cover rounded-lg"
-              />
+              {item.type === "places" && item.lat && item.lng ? (
+                <LeafletMap
+                  lng="127.0552460"
+                  lat="37.5375577"
+                  title={item.title}
+                />
+              ) : (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full aspect-square object-cover rounded-lg"
+                />
+              )}
+
               <figcaption className="text-center font-bold text-lg">
                 {item.groupId}
               </figcaption>

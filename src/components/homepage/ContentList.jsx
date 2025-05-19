@@ -1,7 +1,8 @@
-import useContentDataStore from "../../store/useContentDataStore";
+import useRecommendDataStore from "../../store/useRecommendDataStore";
 
 const ContentList = ({ onItemClick }) => {
-  const { items } = useContentDataStore();
+  const { items } = useRecommendDataStore();
+  console.log(items);
 
   const uniqueGroups = Array.from(
     new Map(items.map((item) => [item.groupId, item])).values()

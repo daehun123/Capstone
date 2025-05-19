@@ -1,9 +1,20 @@
 import { Bookmark, Star } from "lucide-react";
 import useContentDataStore from "../../store/useContentDataStore";
+import useRecommendDataStore from "../../store/useRecommendDataStore";
 import DOMPurify from "dompurify";
+import NaverMap from "../map/Leaflet";
+import LeafletMap from "../map/Leaflet";
 
-const ContentGrid = ({ groupId }) => {
-  const { items, toggleBookmark } = useContentDataStore();
+const ContentGrid = ({ groupId, store = "content" }) => {
+  const contentStore = useContentDataStore();
+  const recommendStore = useRecommendDataStore();
+
+  const items =
+    store === "recommend" ? recommendStore.items : contentStore.items;
+  const toggleBookmark =
+    store === "recommend"
+      ? recommendStore.toggleBookmark
+      : contentStore.toggleBookmark;
 
   const detail = items.filter((item) => item.groupId === groupId);
 
@@ -17,12 +28,19 @@ const ContentGrid = ({ groupId }) => {
             onClick={() => window.open(item.link)}
             className="cursor-pointer flex flex-col justify-center items-center bg-white rounded-xl shadow-sm p-2 relative"
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full aspect-square object-cover rounded-lg"
-            />
-
+            {item.type === "places" && item.lat && item.lng ? (
+              <LeafletMap
+                lng="127.0552460"
+                lat="37.5375577"
+                title={item.title}
+              />
+            ) : (
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full aspect-square object-cover rounded-lg"
+              />
+            )}
             <div>
               <Star
                 className={`cursor-pointer hover:scale-125 transition absolute right-4 top-1.5 size-4 z-10 ${
@@ -41,16 +59,18 @@ const ContentGrid = ({ groupId }) => {
                 strokeWidth="0"
               />
             </div>
-
-            <figcaption className="text-sm text-center font-semibold mt-2 leading-tight tracking-tight line-clamp-2 h-[3.5rem]">
+            <figcaption className="text-sm text-center font-semibold mt-2 leading-relaxed tracking-tight line-clamp-2">
               {plainTitle}
             </figcaption>
-
             {item.lprice ? (
               <figcaption className="text-sm font-semibold w-full border-t-2 text-red-500">
                 {item.lprice}원
               </figcaption>
-            ) : null}
+            ) : (
+              <figcaption className="text-sm font-semibold">
+                {item.category}
+              </figcaption>
+            )}
           </figure>
         );
       })}
