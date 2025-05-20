@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 import ContentSkeleton from "../components/skeleton/ContentSkeleton";
 import YoutubeSkeleton from "../components/skeleton/YoutubeSkeleton";
 import ContentListSkeleton from "../components/skeleton/ContentListSkeleton.jsx";
+import useRecommendDataStore from "../store/useRecommendDataStore.js";
 
 export const Home = () => {
   const nav = useNavigate();
@@ -34,7 +35,11 @@ export const Home = () => {
     setSelectType("youtube");
   };
   const closeModal = async () => {
-    await sendBookmark();
+    if (selectType === "recommend") {
+      await useRecommendDataStore.getState().sendBookmark();
+    } else if (selectType === "content") {
+      await useContentDataStore.getState().sendBookmark();
+    }
     setSelectedItem(null);
     setSelectType(null);
   };
@@ -59,17 +64,41 @@ export const Home = () => {
       try {
         const res = await getData();
         const res_else = await getElseData();
-        //const res_youtube = await getYoutubeData();
+        const res_youtube = await getYoutubeData();
         const setItems = useContentDataStore.getState().setItems;
         const setYItems = useYoutubeDataStore.getState().setItems;
+        const setElseItem = useRecommendDataStore.getState().setItems;
         if (
           res.status === 200 &&
-          res_else.status === 200 //&&
-          //res_youtube.status === 200
+          res_else.status === 200 &&
+          res_youtube.status === 200
         ) {
           const naverResults = res.data.data?.naver_results;
           const naverPlaces = res.data.data?.naver_places;
           let combinedItems = [];
+
+          const recommendItem = res_else.data.data;
+          if (recommendItem) {
+            const modifiedRecommendItems = [];
+
+            Object.keys(recommendItem).forEach((key) => {
+              const items = recommendItem[key];
+              if (Array.isArray(items)) {
+                items.forEach((item) => {
+                  modifiedRecommendItems.push({
+                    ...item,
+                    groupId: key,
+                    id:
+                      item.productId ||
+                      item.id ||
+                      `${key}-${item.title}`.replace(/\s+/g, "-"),
+                    mark: false,
+                  });
+                });
+              }
+            });
+            setElseItem(modifiedRecommendItems);
+          }
 
           if (naverResults) {
             Object.keys(naverResults).forEach((key) => {
@@ -95,7 +124,7 @@ export const Home = () => {
                 combinedItems = combinedItems.concat(
                   items.map((item) => ({
                     ...item,
-                    type: "places",
+                    type: "place",
                     groupId: key,
                     id: item.id || uuidv4(),
                     mark: false,
@@ -110,7 +139,7 @@ export const Home = () => {
             return;
           }
 
-          //setYItems(res_youtube.data.data);
+          setYItems(res_youtube.data.data);
           setItems(combinedItems);
         }
       } catch (error) {
@@ -132,9 +161,9 @@ export const Home = () => {
     <Layout>
       <MainHeader />
       <main className="bg-[#034AA6] min-h-screen text-center pt-20 flex flex-col">
-        <p className="relative top-16 text-white font-semibold text-lg">
-          안녕하세요 <span className="text-[#FFD700]">{username}</span>님 오늘의
-          추천이에요!
+        <p className="relative top-16 text-white font-semibold text-lg ">
+          안녕하세요 <span className="text-[#FFD700] ">{username}</span>님
+          오늘의 추천이에요!
         </p>
         <article className="bg-white rounded-t-3xl mt-32 p-4 flex flex-col space-y-3 border border-gray-200 flex-grow">
           {loading ? (
@@ -160,13 +189,30 @@ export const Home = () => {
             {loading ? (
               <ContentListSkeleton />
             ) : (
-              <ContentList onItemClick={openModal} />
+              <ContentList
+                onItemClick={(item) => {
+                  setSelectedItem(item);
+                  setSelectType("recommend");
+                }}
+              />
             )}
           </section>
         </article>
         {selectedItem && selectType === "content" && (
-          <ContentModal item={selectedItem} onClose={closeModal} />
+          <ContentModal
+            item={selectedItem}
+            onClose={closeModal}
+            store="content"
+          />
         )}
+        {selectedItem && selectType === "recommend" && (
+          <ContentModal
+            item={selectedItem}
+            onClose={closeModal}
+            store="recommend"
+          />
+        )}
+
         {selectedItem && selectType === "youtube" && (
           <YoutubeModal item={selectedItem} onClose={closeModal} />
         )}

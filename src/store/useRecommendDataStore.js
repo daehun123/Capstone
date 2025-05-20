@@ -47,12 +47,12 @@ const useRecommendDataStore = create((set, get) => ({
             title: item.title,
             link: item.link,
             image: item.image,
-            lprice: item.price,
+            lprice: item.lprice,
             hprice: item.hprice,
             mallName: item.mallName,
             productId: item.productId,
           });
-        } else if (item.type === "places") {
+        } else if (item.type === "place") {
           changed.push({
             type: item.type,
             title: item.title,

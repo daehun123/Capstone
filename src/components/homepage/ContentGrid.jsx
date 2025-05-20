@@ -27,7 +27,7 @@ const ContentGrid = ({ groupId, store = "content" }) => {
             onClick={() => window.open(item.link)}
             className="cursor-pointer flex flex-col justify-center items-center bg-white rounded-xl shadow-sm p-2 relative"
           >
-            {item.type === "places" && item.lat && item.lng ? (
+            {item.type === "place" && item.lat && item.lng ? (
               <LeafletMap lng={item.lng} lat={item.lat} title={item.title} />
             ) : (
               <img

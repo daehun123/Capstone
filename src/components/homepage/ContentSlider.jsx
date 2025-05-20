@@ -35,7 +35,7 @@ const ContentSlider = ({ onItemClick }) => {
               tabIndex={-1}
               className="flex flex-col items-center justify-center space-y-2 "
             >
-              {item.type === "places" && item.lat && item.lng ? (
+              {item.type === "place" && item.lat && item.lng ? (
                 <LeafletMap lng={item.lng} lat={item.lat} title={item.title} />
               ) : (
                 <img

@@ -16,7 +16,7 @@ const BookMarkPageGrid = () => {
             onClick={() => window.open(item.link)}
             className="cursor-pointer flex flex-col justify-start items-center overflow-hidden bg-white rounded-xl shadow-sm p-1 mt-2 relative hover:shadow-md hover:bg-gray-50 transition-all"
           >
-            {item.type === "places" && item.lat && item.lng ? (
+            {item.type === "place" && item.lat && item.lng ? (
               <LeafletMapBookMark
                 lng={item.lng}
                 lat={item.lat}
