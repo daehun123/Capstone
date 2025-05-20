@@ -68,6 +68,7 @@ export const Home = () => {
         const setItems = useContentDataStore.getState().setItems;
         const setYItems = useYoutubeDataStore.getState().setItems;
         const setElseItem = useRecommendDataStore.getState().setItems;
+        console.log(res);
         if (
           res.status === 200 &&
           res_else.status === 200 &&
@@ -141,6 +142,7 @@ export const Home = () => {
 
           setYItems(res_youtube.data.data);
           setItems(combinedItems);
+          console.log(combinedItems);
         }
       } catch (error) {
         console.error(error);

@@ -30,7 +30,7 @@ const slideVariants = {
 const MyPage = () => {
   const system = true;
   const { info } = useUserDataStore();
-  const [isChange, setIsChange] = useState(false);
+  const [isChange, setIsChange] = useState(true);
   const toggleHandler = () => {
     setIsChange(!isChange);
   };
