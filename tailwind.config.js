@@ -2,7 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        yangjin: ["양진체", "sans-serif"],
+      },
+    },
   },
   plugins: [
     require("tailwind-scrollbar-hide"),
