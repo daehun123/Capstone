@@ -2,7 +2,6 @@ import { Bookmark, Star } from "lucide-react";
 import useContentDataStore from "../../store/useContentDataStore";
 import useRecommendDataStore from "../../store/useRecommendDataStore";
 import DOMPurify from "dompurify";
-import NaverMap from "../map/Leaflet";
 import LeafletMap from "../map/Leaflet";
 
 const ContentGrid = ({ groupId, store = "content" }) => {
@@ -29,11 +28,7 @@ const ContentGrid = ({ groupId, store = "content" }) => {
             className="cursor-pointer flex flex-col justify-center items-center bg-white rounded-xl shadow-sm p-2 relative"
           >
             {item.type === "places" && item.lat && item.lng ? (
-              <LeafletMap
-                lng="127.0552460"
-                lat="37.5375577"
-                title={item.title}
-              />
+              <LeafletMap lng={item.lng} lat={item.lat} title={item.title} />
             ) : (
               <img
                 src={item.image}
@@ -67,7 +62,7 @@ const ContentGrid = ({ groupId, store = "content" }) => {
                 {item.lprice}원
               </figcaption>
             ) : (
-              <figcaption className="text-sm font-semibold">
+              <figcaption className="text-sm font-semibold line-clamp-1">
                 {item.category}
               </figcaption>
             )}

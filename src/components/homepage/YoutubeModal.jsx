@@ -14,6 +14,7 @@ const YoutubeModal = ({ item, onClose }) => {
       try {
         const res = await getYoutubeDes(item.id);
         const setDesc = useYoutubeDataStore.getState().setDescriptionItem;
+        console.log(res);
         if (res.status === 200) {
           setDesc(item.id, res.data.data.description);
         }
