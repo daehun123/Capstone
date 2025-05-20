@@ -18,8 +18,8 @@ const BookMarkPageGrid = () => {
           >
             {item.type === "places" && item.lat && item.lng ? (
               <LeafletMapBookMark
-                lng="127.0552460"
-                lat="37.5375577"
+                lng={item.lng}
+                lat={item.lat}
                 title={item.title}
               />
             ) : (
