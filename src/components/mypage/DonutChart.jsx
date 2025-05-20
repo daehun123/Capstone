@@ -4,7 +4,7 @@ import { getChart } from "../../util/api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const DonutChart = () => {
+const DonutChart = ({ item }) => {
   const nav = useNavigate();
   const [scoreGroup, setScoreGroup] = useState([]);
 
@@ -13,8 +13,17 @@ const DonutChart = () => {
       try {
         const res = await getChart();
         if (res.status === 200) {
-          const rawData = res.data.data.slice(0, 5);
-          const total = rawData.reduce((acc, item) => acc + item.score, 0);
+          const typeMap = {
+            장소: "place",
+            상품: "shopping",
+          };
+
+          const selectedType = typeMap[item];
+          const filteredData = res.data.data
+            .filter((el) => el.type === selectedType)
+            .slice(0, 5);
+
+          const total = filteredData.reduce((acc, item) => acc + item.score, 0);
 
           const colors = [
             "#211C84",
@@ -24,7 +33,7 @@ const DonutChart = () => {
             "#BEBACF",
           ];
 
-          const formattedData = rawData.map((item, index) => ({
+          const formattedData = filteredData.map((item, index) => ({
             name: item.keyword,
             value: Math.round((item.score / total) * 360),
             fill: colors[index % colors.length],
@@ -38,8 +47,9 @@ const DonutChart = () => {
         nav("/", { replace: true });
       }
     };
+
     getScore();
-  }, []);
+  }, [item]);
 
   if (scoreGroup.length === 0) {
     return (
