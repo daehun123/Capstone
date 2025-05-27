@@ -86,7 +86,13 @@ const DonutChart = ({ item }) => {
           angleAxisId={0}
           tick={false}
         />
-        <RadialBar minAngle={15} background clockWise dataKey="value" />
+        <RadialBar
+          minAngle={15}
+          background
+          clockWise
+          dataKey="value"
+          label={{ position: "insideStart", fill: "#fff", fontSize: 12 }}
+        />
         <Legend
           iconSize={20}
           layout="horizontal"
